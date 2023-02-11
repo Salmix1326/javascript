@@ -1,0 +1,63 @@
+.check {
+   display: inline-block;
+   padding: 15px;
+   background: white;
+   box-shadow: 0px 0px 2px 1px black;
+   text-align: center;
+}
+
+p {
+   padding: 0;
+   margin: 0;
+}
+
+.check__column-name {
+   display: flex;
+   gap: 200px;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 10px;
+}
+
+.check__item {
+   display: flex;
+   gap: 150px;
+   align-items: center;
+   margin-bottom: 20px;
+   justify-content: space-between;
+   text-align: left;
+}
+
+.check__name {
+   min-width: 110px;
+}
+
+.check__count {
+   min-width: 80px;
+}
+
+.check__info-column {
+   display: flex;
+   gap: 30px;
+
+}
+
+.check__info {
+   display: flex;
+   gap: 30px;
+
+}
+
+.check__price {
+   min-width: 35px;
+
+}
+
+.check__tax {
+   text-align: left;
+   margin-bottom: 10px;
+}
+
+.check__sum {
+   text-align: left;
+}

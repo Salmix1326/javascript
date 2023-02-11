@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Задача №0</title>
+</head>
+
+<body>
+   <h1>Задача 0. Обчислити значення виразів</h1>
+   <script>
+      // Переменные
+      let a = parseFloat(prompt("Введите значения первого числа", 0));
+      let b = parseFloat(prompt("Введите значения второго числа", 1));
+      let c = parseFloat(prompt("Введите значения третьего числа", 2));
+      // Обчисления
+      let S1 = a + 12 + b;
+      let S2 = Math.sqrt((a + b) / 2 * a);
+      let S3 = Math.cbrt((a + b) * c);
+      let S4 = Math.sin(a / -b);
+      // Вывод
+      document.write(`<h2>S1 = ${S1}</h2>`);
+      document.write(`<h2>S2 = ${S2}</h2>`);
+      document.write(`<h2>S3 = ${S3}</h2>`);
+      document.write(`<h2>S4 = ${S4}</h2>`);
+   </script>
+</body>
+
+</html>

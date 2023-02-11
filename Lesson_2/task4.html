@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Задача №4</title>
+</head>
+
+<body>
+   <h1>Задача 4. Дано довжину у сантиметрах. Визначати скільки це метрів і кілометрів.</h1>
+   <script>
+      // Получение сантиметров
+      let long = parseFloat(prompt("Введите длинну в сантиметрах"))
+      // Обчисление метров
+      let metres = Math.floor(long / 100)
+      // Обчисление километров
+      let kilometers = Math.floor(long / 100000)
+      // Вывод
+      document.write(`<h2>Длинна в метрах: ${metres}</h2>`)
+      document.write(`<h2>Длинна в километрах: ${kilometers}</h2>`)
+   </script>
+</body>
+
+</html>

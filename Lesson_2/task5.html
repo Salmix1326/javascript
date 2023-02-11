@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Задача №5</title>
+</head>
+
+<body>
+   <h1>Задача 5. Дано кількість секунд, що пройшла від початку доби. Визначити скільки це годин і хвилин.</h1>
+   <script>
+      // Получение секунд
+      let seconds = parseFloat(prompt("Введите количество секунд"))
+      // Обчисление минут
+      let minutes = Math.floor(seconds / 60)
+      // Обчисление часов
+      let hours = Math.floor(seconds / 3600)
+      // Вывод
+      document.write(`<h2>Время в минутах: ${minutes}</h2>`)
+      document.write(`<h2>Время в часах: ${hours}</h2>`)
+   </script>
+</body>
+
+</html>

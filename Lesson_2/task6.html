@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style.css">
+   <title>Задача №0</title>
+</head>
+
+<body>
+   <h1>Задача 6. З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.</h1>
+   <div class="check">
+      <h2 class="check__title">Супермаркет ATБ</h2>
+      <p class="check__location">г.Харьков</p>
+      <p class="check__cash-register">Касса 5</p>
+      <div class="check__items">
+         <div class="check__column-name">
+            <span class="check__name">Название товара</span>
+            <div class="check__info-column">
+               <span class="check__count">Количество</span>
+               <span class="check__price">Цена</span>
+            </div>
+         </div>
+         <div class="check__item">
+            <span class="check__name name1"></span>
+            <div class="check__info">
+               <span class="check__count count-1"></span>
+               <span class="check__price price1"></span>
+            </div>
+         </div>
+         <div class="check__item">
+            <span class="check__name name2"></span>
+            <div class="check__info">
+               <span class="check__count count-2"></span>
+               <span class="check__price price2"></span>
+            </div>
+         </div>
+         <div class="check__item">
+            <span class="check__name name3"></span>
+            <div class="check__info">
+               <span class="check__count count-3"></span>
+               <span class="check__price price3"></span>
+            </div>
+         </div>
+         <p class="check__tax">НДФ: <span class="check__count count-tax"></span><span class="check__price">5%</span></p>
+         <p class="check__sum">Сумма: <span class="check__count count-price"></span></p>
+      </div>
+   </div>
+   <script>
+      // Получение данных товара 1
+      let nameItem = prompt("Введите название товара")
+      let itemPrice = parseFloat(prompt("Введите цену единицы товара"))
+      let countItem = parseFloat(prompt("Введите количество товара"))
+      // Получение данных товара 2
+      let nameItem2 = prompt("Введите название второго товара")
+      let itemPrice2 = parseFloat(prompt("Введите цену единицы товара"))
+      let countItem2 = parseFloat(prompt("Введите количество товара"))
+      // Получение данных товара 3
+      let nameItem3 = prompt("Введите название третьего товара")
+      let itemPrice3 = parseFloat(prompt("Введите цену единицы товара"))
+      let countItem3 = parseFloat(prompt("Введите количество товара"))
+      // Получение блоков из HTML
+      let nameItemBlock = document.querySelector(".name1")
+      let itemPriceBlock = document.querySelector(".price1")
+      let countItemBlock = document.querySelector(".count-1")
+      let nameItemBlock2 = document.querySelector(".name2")
+      let itemPriceBlock2 = document.querySelector(".price2")
+      let countItemBlock2 = document.querySelector(".count-2")
+      let nameItemBlock3 = document.querySelector(".name3")
+      let itemPriceBlock3 = document.querySelector(".price3")
+      let countItemBlock3 = document.querySelector(".count-3")
+      let totalPriceBlock = document.querySelector(".count-price")
+      // Вывод данных в блоки
+      nameItemBlock.innerText = `${nameItem}`;
+      itemPriceBlock.innerText = `${itemPrice}`;
+      countItemBlock.innerText = `${countItem}`;
+      nameItemBlock2.innerText = `${nameItem2}`;
+      itemPriceBlock2.innerText = `${itemPrice2}`;
+      countItemBlock2.innerText = `${countItem2}`;
+      nameItemBlock3.innerText = `${nameItem3}`;
+      itemPriceBlock3.innerText = `${itemPrice3}`;
+      countItemBlock3.innerText = `${countItem3}`;
+      // Обчиление общей цены
+      let price = (itemPrice * countItem) + (itemPrice2 * countItem2) + (itemPrice3 * countItem3)
+      let tax = price * 0.05
+      let totalPrice = price + tax
+      // Вывод общей цены
+      totalPriceBlock.innerText = totalPrice;
+   </script>
+</body>
+
+</html>
