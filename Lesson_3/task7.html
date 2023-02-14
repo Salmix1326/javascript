@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Задача №0</title>
+</head>
+
+<body>
+   <h1>З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься</h1>
+   <script>
+      let monthNum = parseInt(prompt("Введите номер месяца. 1 - Январь, 2 - Февраль, 3 - Март, 4 - Апрель, 5 - Май, 6 - Июнь, 7 - Июль, 8 - Август, 9 - Сентябрь, 10 - Октябрь, 11 - Ноябрь, 12 - Декабрь", 1))
+      if ((monthNum >= 1 && monthNum <= 2) || monthNum == 12)
+         document.write("Это зимний месяц")
+      else if (monthNum > 2 && monthNum <= 5)
+         document.write("Это весений месяц")
+      else if (monthNum > 5 && monthNum <= 8)
+         document.write("Это летний месяц")
+      else if (monthNum > 8 && monthNum <= 11)
+         document.write("Это осенний месяц")
+      else document.write("Некорректно введены данные")
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Задача №5</title>
+</head>
+
+<body>
+   <h1>5. З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести на екран назву транспортного засобу, яким він може керувати.</h1>
+   <script>
+      let category = prompt("Введите Вашу категорию водительских прав").charCodeAt(0);
+      let numberOfLetter = String.fromCharCode(category).toUpperCase()
+      let result
+      switch (numberOfLetter) {
+         case "A": result = document.write("Вы водите мотоцикл")
+            break
+         case "B": result = document.write("Вы водите легковой автомобиль")
+            break
+         case "C": result = document.write("Вы водите грузовой автомобиль")
+            break
+         default: result = document.write("Некорректно ведены данные")
+      }
+   </script>
+</body>
+
+</html>

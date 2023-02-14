@@ -1,0 +1,34 @@
+* {
+   padding: 0;
+   margin: 0;
+}
+
+.check {
+   padding: 30px;
+   border: 2px solid black;
+   max-width: 600px;
+}
+.check__head {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 20px;
+}
+
+.check__body {
+   display: flex;
+   gap: 50px;
+   margin-bottom: 20px;
+}
+
+.check__column {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+.check__tax {
+   margin-bottom: 10px;
+}
