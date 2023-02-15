@@ -12,6 +12,7 @@
    <script>
       let userAge = parseInt(prompt("Введите количество полных лет пользователя"))
       let result;
+      if ( userAge > 0) {
        if (userAge < 3)
           result = "Вы слишком малы для детского сада"
       else if (userAge < 6)
@@ -22,9 +23,8 @@
          result = "Вы посещаете университет будучи студентом"
       else if (userAge < 60)
          result = "Вы работаете"
-      else if (userAge >= 60)
-          result = "Вы пенсионер"
-      else result = "Некорректно задано количество лет"
+      else  result = "Вы пенсионер"
+      } else result = "Некорректно задано количество лет"
       document.write(result);
    </script>
 </body>
