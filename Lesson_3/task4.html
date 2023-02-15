@@ -15,13 +15,15 @@
        if (userAge < 3)
           result = "Вы слишком малы для детского сада"
       else if (userAge <= 6)
-         result = "Вы посещаете школу будучи учеником"
+         result = "Вы посещаете детский сад будучи ребенком"
       else if (userAge <= 18)
+         result = "Вы посещаете школу будучи учеником"
+      else if (userAge <= 22)
          result = "Вы посещаете университет будучи студентом"
-      else if (userAge <=22)
+      else if (userAge < 60)
          result = "Вы работаете"
-      else if (userAge > 60)
-         result = "Вы пенсионер"
+      else if (userAge >= 60)
+          result = "Вы пенсионер"
       else result = "Некорректно задано количество лет"
       document.write(result);
    </script>
