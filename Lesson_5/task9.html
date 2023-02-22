@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №9</title>
+  </head>
+
+  <body>
+    <h1>
+      Задача 9. Користувач загадує число. Комп’ютер задає питання поки не вгадає
+      число користувача (використати confirm).
+    </h1>
+    <script>
+      // Данные
+      let userNum = parseInt(prompt("Загадайте число от 1 до 20"));
+      let result;
+      // Цикл на угадывание числа
+      do {
+        let compNum = Math.floor(Math.random() * 20) + 1;
+        result = confirm(`Ваше число ${compNum} ?`);
+      } while (result == false);
+      document.write("<h2>Ура, Я угадал!</h2>");
+    </script>
+  </body>
+</html>
