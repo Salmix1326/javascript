@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №9</title>
+  </head>
+
+  <body>
+    <h1>
+      Задача 9. Дано покази температур (довільна кількість). Розробити функцію,
+      яка дозволить підрахувати кількість від’ємних показів температури.
+    </h1>
+    <script>
+      let counter = 0;
+      const tempValues = temperatureValues(
+        20,
+        15,
+        17,
+        -6,
+        3,
+        11,
+        5,
+        6,
+        7,
+        -20,
+        -17,
+        21,
+        21,
+        23
+      );
+      function temperatureValues() {
+        for (let i = 0; i < arguments.length; i++) {
+          if (arguments[i] < 0) counter++;
+        }
+      }
+      document.write(
+        `Количество отрицательных показателей температуры: ${counter}`
+      );
+    </script>
+  </body>
+</html>

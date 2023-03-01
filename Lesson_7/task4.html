@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <h1>
+      Задача 4. Створити функцію, яка для 3 заданих чисел знаходить одночасно
+      декілька результатів: кількість парних, кількість додатних, кількість
+      більших за 100.
+    </h1>
+    <script>
+      let num1 = parseInt(prompt("Введите первое число"));
+      let num2 = parseInt(prompt("Введите второе число"));
+      let num3 = parseInt(prompt("Введите третье число"));
+
+      let counterEvenNum = 0;
+      let counterPositiveNum = 0;
+      let counterBigNum = 0;
+
+      function checkNum(num1, num2, num3) {
+        for (let i = 0; i <= arguments.length; i++) {
+          if (arguments[i] % 2 === 0) counterEvenNum++;
+          if (arguments[i] > 0) counterPositiveNum++;
+          if (arguments[i] > 100) counterBigNum++;
+        }
+
+        document.write(
+          `Количество четных чисел среди трех заданных: ${counterEvenNum} <br>`
+        );
+        document.write(
+          `Количество положительных чисел среди трех заданных: ${counterPositiveNum} <br>`
+        );
+        document.write(
+          `Количество чисел больше чем 100 среди трех заданных: ${counterBigNum} <br>`
+        );
+      }
+      checkNum(num1, num2, num3);
+    </script>
+  </body>
+</html>

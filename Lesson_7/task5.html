@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <h1>Задача 5. Створити окремі функції, які переводять:</h1>
+    <ol>
+      <li>Сантиметри у дюйми</li>
+      <li>Кілограми у фунти</li>
+      <li>Кілометри у милі</li>
+    </ol>
+    <script>
+      let userChoice = parseInt(
+        prompt(
+          "Выберите действие: 1 - перевести сантиметры в дюймы. 2 - перевести килограммы в фунты. 3 - перевести километры в мили"
+        )
+      );
+      if ((userChoice == 1)) {
+        let userNum = parseInt(prompt("Введите количество сантиметров"));
+        let resultInch;
+        function getInch(userNum) {
+          resultInch = userNum / 2.54;
+          return resultInch;
+        }
+        getInch(userNum);
+        document.write(`Ваше количество сантиметро в дюймах: ${resultInch}`);
+      } else if ((userChoice == 2)) {
+        let userNum = parseInt(prompt("Введите количество килограмм"));
+        let resultKilos;
+        function getKilos(userNum) {
+          resultKilos = userNum / 0.453592;
+          return resultKilos;
+        }
+        getKilos(userNum);
+        document.write(`Ваше количество килограмм в фунтах: ${resultKilos}`);
+      } else if (userChoice == 3) {
+        let userNum = parseInt(prompt("Введите количество километров"));
+        let resultMiles;
+        function getMiles(userNum) {
+          resultMiles = userNum / 1.60934;
+          return resultMiles;
+        }
+        getMiles(userNum);
+        document.write(`Ваше количество километров в милях: ${resultMiles}`);
+      } else document.write(`Error`);
+    </script>
+  </body>
+</html>
