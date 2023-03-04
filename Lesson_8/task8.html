@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №8</title>
+  </head>
+
+  <body>
+    <h1>
+      Задача 8. Дано одновимірний масив, у якому зберігається певна виграшна
+      сума (елементи заповнюються випадковим чином значеннями від -500 до 500).
+      Надаючи користувачу можливість вибирати номери елементів (поки він не
+      відмовиться). Знаходити сумарний виграш.
+    </h1>
+    <script>
+      const countOfNumbers = 25;
+
+      function getNumbers(countOfNumbers) {
+        let someNum = [];
+        for (let i = 0; i < countOfNumbers; i++) {
+          randomNum = Math.floor(Math.random() * 500) + 1;
+          randomSymbolNum = Math.floor(Math.random() * 2) + 1;
+
+          if (randomSymbolNum === 2) randomNum = randomNum * -1;
+          someNum.push(randomNum);
+        }
+        return someNum;
+      }
+
+      function userPlay(someNumbers) {
+        let userNum;
+        let userSum = 0;
+        let userChoice;
+        do {
+          userNum = parseInt(
+            prompt(
+              "Можете выбрать номер от 1 до 25 и добавить к своей сумме от -500 до 500 очков или нажать 'отмена'"
+            )
+          );
+          if (!isNaN(userNum)) userSum += someNumbers[userNum];
+        } while (!isNaN(userNum));
+        return userSum;
+      }
+
+      const someNumbers = getNumbers(countOfNumbers);
+      const userSum = userPlay(someNumbers);
+
+      document.write(`Сумма вашего выигрыша равна: ${userSum}`);
+    </script>
+  </body>
+</html>

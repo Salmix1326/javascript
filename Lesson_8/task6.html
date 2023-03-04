@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №6</title>
+  </head>
+
+  <body>
+    <h1>
+      Задача 6. Дано послідовність цін товарів та назв (у окремих масивах).
+      Вивести на екран ті, які може собі дозволити користувач (кількість грошей
+      задається).
+    </h1>
+    <script>
+      let productsPrices = [50, 100, 200, 400, 80];
+      let productsTitles = ["Сыр", "Конфеты", "Говядина", "Вино", "Кока-кола"];
+      let userMoney = parseInt(prompt("Введите количество денег"));
+      function getNamesofTitles(productsPrices, productsTitles) {
+        let result = [];
+        for (let i = 0; i < productsPrices.length; i++) {
+          if (userMoney >= productsPrices[i]) {
+            result.push(productsTitles[i]);
+          }
+        }
+        return result;
+      }
+
+      const result = getNamesofTitles(productsPrices, productsTitles);
+
+      document.write(`Вы можете купить ${result}`);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+
+  <body>
+    <h1>
+      <span>Задача 2</span>. Дано масив, який зберігає кількість відвідувачів
+      магазину протягом тижня. Вивести на екран:
+    </h1>
+    <ul>
+      <li>
+        Номери днів, протягом яких кількість відвідувачів була меншою за 20
+      </li>
+      <li>Номери днів, коли кількість відвідувачів була мінімальною</li>
+      <li>
+        Загальну кількість клієнтів у робочі дні та окремо загальну кількість
+        клієнтів на вихідних.
+      </li>
+    </ul>
+    <script>
+      let countOfCustomers = [20, 6, 4, 22, 8, 11, 0];
+
+      function getMinThen20CountOfCustomers(countOfCustomers) {
+        let minThen20CountOfCustomers = [];
+        for (let i = 0; i < countOfCustomers.length; i++) {
+          if (countOfCustomers[i] < 20) {
+            minThen20CountOfCustomers.push(i + 1);
+          }
+        }
+        return minThen20CountOfCustomers;
+      }
+
+      function getMinCountOfCustomers(countOfCustomers) {
+        let minCountOfCustomers = [];
+        for (let i = 0; i < countOfCustomers.length; i++) {
+          if (countOfCustomers[i] < 5) {
+            minCountOfCustomers.push(i + 1);
+          }
+        }
+        return minCountOfCustomers;
+      }
+
+      function getTotalCountWorkDay(countOfCustomers) {
+        let totalCountWorkDay = 0;
+        for (let i = 0; i < countOfCustomers.length; i++) {
+          if (i >= 0 && i <= 4) {
+            totalCountWorkDay += countOfCustomers[i];
+          }
+        }
+        return totalCountWorkDay;
+      }
+
+      function getTotalCountWeekend(countOfCustomers) {
+        let totalCountWeekend = 0;
+        for (let i = 0; i < countOfCustomers.length; i++) {
+          if (i > 4) {
+            totalCountWeekend += countOfCustomers[i];
+          }
+        }
+        return totalCountWeekend;
+      }
+
+      const minThen20CountOfCustomers = getMinThen20CountOfCustomers(countOfCustomers);
+      const minCountOfCustomers = getMinCountOfCustomers(countOfCustomers);
+      const totalCountWorkDay = getTotalCountWorkDay(countOfCustomers);
+      const totalCountWeekend = getTotalCountWeekend(countOfCustomers);
+
+      document.write(
+        `Дни, когда посетитилей было меньше 20-ти: ${minThen20CountOfCustomers} <br>`
+      );
+      document.write(
+        `Дни, когда посетитилей меньше всего: ${minCountOfCustomers} <br>`
+      );
+      document.write(
+        `Общее количество посетитилей в рабочие дни: ${totalCountWorkDay} и выходные: ${totalCountWeekend} <br>`
+      );
+    </script>
+  </body>
+</html>

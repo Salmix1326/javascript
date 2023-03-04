@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №7</title>
+  </head>
+
+  <body>
+    <h1>
+      <span>Задача 7</span>. Дано послідовність платіжок протягом року. Знайти
+      сумарну кількість грошей за:
+    </h1>
+    <ul>
+      <li>За весь рік</li>
+      <li>У першій половині року</li>
+      <li>У другій половині року</li>
+      <li>За літо</li>
+      <li>За ІІ квартал</li>
+      <li>За парні місяці (з парними номерами)</li>
+      <li>За місяці, які є початковими у сезоні (весна, літо, осінь, зима)</li>
+    </ul>
+    <script>
+      let userYearPay = [
+        3000, 800, 1000, 700, 400, 100, 1500, 2000, 500, 300, 1100, 900,
+      ];
+
+      function getYearPay(userYearPay) {
+        let totalPay = 0;
+        for (let i = 1; i <= userYearPay.length; i++) {
+          totalPay += userYearPay[i - 1];
+        }
+        return totalPay;
+      }
+
+      function getFirstHalfYearPay(userYearPay) {
+        let totalPay = 0;
+        for (let i = 1; i <= userYearPay.length - 6; i++) {
+          totalPay += userYearPay[i - 1];
+        }
+        return totalPay;
+      }
+
+      function getSecondHalfYearPay(userYearPay) {
+        let totalPay = 0;
+        for (let i = 7; i <= userYearPay.length; i++) {
+          totalPay += userYearPay[i - 1];
+        }
+        return totalPay;
+      }
+
+      function getSummerPay(userYearPay) {
+        let totalPay = 0;
+        for (let i = 6; i <= userYearPay.length - 4; i++) {
+          totalPay += userYearPay[i - 1];
+        }
+        return totalPay;
+      }
+
+      function getSecondQuarterPay(userYearPay) {
+        let totalPay = 0;
+        for (let i = 4; i <= userYearPay.length - 6; i++) {
+          totalPay += userYearPay[i - 1];
+        }
+        return totalPay;
+      }
+
+      function getEvenMonthPay(userYearPay) {
+        let totalPay = 0;
+        for (let i = 1; i <= userYearPay.length; i = i + 2) {
+          totalPay += userYearPay[i - 1];
+        }
+        return totalPay;
+      }
+
+      function getFirstTimeMonthYearPay(userYearPay) {
+        let totalPay = 0;
+        for (let i = 3; i <= userYearPay.length; i = i + 3) {
+          totalPay += userYearPay[i - 1];
+        }
+        return totalPay;
+      }
+
+      const yearPay = getYearPay(userYearPay);
+      const firstHalfYearPay = getFirstHalfYearPay(userYearPay);
+      const secondHalfYearPay = getSecondHalfYearPay(userYearPay);
+      const summerPay = getSummerPay(userYearPay);
+      const secondQuarterPay = getSecondQuarterPay(userYearPay);
+      const evenMonthPay = getEvenMonthPay(userYearPay);
+      const firstTimeMonthYearPay = getFirstTimeMonthYearPay(userYearPay);
+      document.write(`Сумма платежа за год: ${yearPay} <br>`);
+      document.write(
+        `Сумма платежа за первую половину года: ${firstHalfYearPay} <br>`
+      );
+      document.write(
+        `Сумма платежа за вторую половину года: ${secondHalfYearPay} <br>`
+      );
+      document.write(`Сумма платежа за лето: ${summerPay} <br>`);
+      document.write(
+        `Сумма платежа за второй квартал года: ${secondQuarterPay} <br>`
+      );
+      document.write(
+        `Сумма платежа за каждый четный месяц года: ${evenMonthPay} <br>`
+      );
+      document.write(
+        `Сумма платежа за каждый первый месяц поры года: ${firstTimeMonthYearPay} <br>`
+      );
+    </script>
+  </body>
+</html>

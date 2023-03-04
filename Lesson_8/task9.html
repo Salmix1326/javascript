@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №9</title>
+  </head>
+
+  <body>
+    <h1>
+      Задача 9. Морський бій. Користувач вводить кількість клітинок
+      одновимірного масиву та кількість одиночних кораблів. Комп’ютер довільно
+      розміщує ці одиночні кораблі у масиві по один у клітинці (якщо у клітинці
+      0, то клітинка пуста, якщо 1 – то це означає, що там є корабель.
+      Користувач вводить номер клітинки, куди стріляє. Гра продовжується до тих
+      пір, поки не будуть потоплені усі кораблі.
+    </h1>
+    <script>
+      // Ввод данных
+      let fieldSize = parseInt(prompt("Введите размер игрового поля"));
+      let shipCount = parseInt(prompt("Введите количество кораблей"));
+      // Введ глобальную переменную для счета кораблей
+      let shipsLeft = shipCount;
+
+      // Создание поля
+      function getBattleField(fieldSize, shipCount) {
+        let field = [];
+        for (let i = 1; i <= fieldSize; i++) {
+          field[i - 1] = 0;
+        }
+        // Заполняем кораблями
+        while (shipCount > 0) {
+          randomShipPosition = Math.floor(Math.random() * fieldSize) + 1;
+          if (field[randomShipPosition - 1] !== 1) {
+            field[randomShipPosition] = 1;
+            shipCount--;
+          }
+        }
+        return field;
+      }
+
+      // Проверка на попадание в корабль
+      function isUserWinner(userBang) {
+        if (battleField[userBang] === 1) {
+          battleField[userBang] = 0;
+          shipsLeft--;
+          alert(`Вы потопили корабль, осталось еще ${shipsLeft}`);
+        } else alert("Вы не попали!");
+        for (let i = 0; i < battleField.length; i++) {
+          if (battleField[i] === 1) return false;
+        }
+        return true;
+      }
+
+      // Проверка на убийство всех кораблей
+      function battle() {
+        let checkWin;
+        do {
+          let userBang = parseInt(
+            prompt(`Введите номер ячейки для выстрела от 1 до ${fieldSize}`)
+          );
+          checkWin = isUserWinner(userBang);
+        } while (checkWin !== true);
+        return true;
+      }
+
+      // Вызов функций
+      let battleField = getBattleField(fieldSize, shipCount);
+      let battleFinish = battle();
+
+      if (battleFinish === true)
+        document.write("Поздравляем! Вы уничтожили все корабли!");
+    </script>
+  </body>
+</html>

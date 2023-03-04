@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №3</title>
+  </head>
+
+  <body>
+    <h1>
+      Задача 3. Дано масив імен учнів. З’ясувати скільки разів зустрічається
+      ім’я «Іван».
+    </h1>
+
+    <script>
+      let studentNames = [
+        "Катя",
+        "Петя",
+        "Иван",
+        "Сергей",
+        "Cаша",
+        "Иван",
+        "Наташа",
+        "Надя",
+        "Иван",
+      ];
+
+      function getStudentName(studentNames) {
+        let nameCounter = 0;
+        for (let i = 0; i < studentNames.length; i++) {
+          if (studentNames[i] === "Иван") nameCounter++;
+        }
+        return nameCounter;
+      }
+
+      const studentName = getStudentName(studentNames);
+
+      document.write(`Мальчиков с именем Иван в классе: ${studentName}`);
+    </script>
+  </body>
+</html>

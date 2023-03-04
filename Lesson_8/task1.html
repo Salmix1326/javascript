@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <h1>
+      Задача 1. Дано масив, який містить оцінки з К предметів. Знайти середній
+      бал і з’ясувати до якої категорії він відноситься (відмінник, двійочник
+      (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є
+      хоча би одна трійка)).
+    </h1>
+    <script>
+      let values = [11, 11, 11, 12, 12, 11, 12, 11, 12];
+      
+      function getAvgScore(values) {
+        let totalSum = 0;
+        let counter = 0;
+        for (let i = 0; i < values.length; i++) {
+          totalSum += values[i];
+          counter++;
+        }
+        return totalSum / counter;
+      }
+
+      function isGood(values) {
+        let studentScore = "";
+        for (let i = 0; i < values.length; i++) {
+          if (values[i] == 2) {
+            studentScore = "Двоешник";
+          } else if (values[i] == 3) {
+            studentScore = "Троешник";
+          } else if (avgScore <= 10) {
+            studentScore = "Хорошист";
+          } else if (avgScore > 10) {
+            studentScore = "Отличник";
+          } else studentScore = "Нет оценок";
+        }
+        return studentScore;
+      }
+
+      let avgScore = Math.floor(getAvgScore(values));
+      let isStudentGood = isGood(values);
+
+      document.write(`Средняя оценка: ${avgScore} <br>`);
+      document.write(`Общая оценка ученика: ${isStudentGood}`);
+    </script>
+  </body>
+</html>

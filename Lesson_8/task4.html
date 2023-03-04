@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <h1>
+      <span>Задача 4</span>. Дано послідовність номерів автомобілів. Підрахувати
+      кількість номерів, які:
+    </h1>
+    <ul>
+      <li>Починаються на букву «А»</li>
+      <li>Перша і остання літери співпадають</li>
+      <li>Складаються з більше ніш 5 символів</li>
+    </ul>
+    <script>
+      let autoNumbers = ["ВА5СА", "AН5263IA", "AA11PC", "НА352KL", "AО257OP"];
+
+      function getCountOfLetterAutoA(autoNumbers) {
+        let counterLettersA = 0;
+        for (let i = 0; i < autoNumbers.length; i++) {
+          let newArr = autoNumbers[i].split("");
+          newArr[0].toUpperCase();
+          if (newArr[0] === "A") counterLettersA++;
+        }
+        return counterLettersA;
+      }
+
+      function getCountOf2SameLetters(autoNumbers) {
+        let counter2Letters = 0;
+        for (let i = 0; i < autoNumbers.length; i++) {
+          let newArr = autoNumbers[i].split("");
+          newArr[0].toUpperCase();
+          if (newArr[0] === newArr[newArr.length - 1]) counter2Letters++;
+        }
+        return counter2Letters;
+      }
+
+      function getCountOfLongNum(autoNumbers) {
+        let counterNumberLength = 0;
+        for (let i = 0; i < autoNumbers.length; i++) {
+          let newArr = autoNumbers[i].split("");
+          newArr[0].toUpperCase();
+          if (newArr.length > 5) counterNumberLength++;
+        }
+        return counterNumberLength;
+      }
+
+      const counterLettersA = getCountOfLetterAutoA(autoNumbers);
+      const counter2OfSameLetters = getCountOf2SameLetters(autoNumbers);
+      const counterNumberLength = getCountOfLongNum(autoNumbers);
+
+      document.write(
+        `Количество номеров, начинающихся на букву "A": ${counterLettersA} <br>`
+      );
+      document.write(
+        `Количество номеров, у которых совпадают первая и последяя цифры: ${counter2OfSameLetters} <br>`
+      );
+      document.write(
+        `Количество номеров, у которых больще 5-ти символов: ${counterNumberLength} <br>`
+      );
+    </script>
+  </body>
+</html>

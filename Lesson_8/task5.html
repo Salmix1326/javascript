@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <h1>
+      <span>Задача 5</span>. Дано послідовність оцінок учня. Підрахувати
+      кількість:
+    </h1>
+    <ul>
+      <li>Двійок</li>
+      <li>Кількість хороших оцінок (добре, відмінно)</li>
+      <li>Кількість оцінок, які нижче середнього</li>
+    </ul>
+    <script>
+      let studentScore = [4, 10, 7, 8, 11, 6, 8, 1, 9, 7, 6, 7, 2, 12, 9];
+
+      function getCountOf2(studentScore) {
+        let countOfTwo = 0;
+        for (let i = 0; i < studentScore.length; i++) {
+          if (studentScore[i] === 2) countOfTwo++;
+        }
+        return countOfTwo;
+      }
+
+      function getCountofGoodScore(studentScore) {
+        let countOfGoodScore = 0;
+        for (let i = 0; i < studentScore.length; i++) {
+          if (studentScore[i] > 9) countOfGoodScore++;
+        }
+        return countOfGoodScore;
+      }
+
+      function getCountOfScoresBelowAvg(studentScore) {
+        let totalSumOfScore = 0;
+        for (let i = 0; i < studentScore.length; i++) {
+          totalSumOfScore += studentScore[i];
+        }
+        let countOfScoresBelowAvg = 0;
+        let avarageScore = totalSumOfScore / studentScore.length;
+        for (let i = 0; i < studentScore.length; i++) {
+          if (studentScore[i] < avarageScore) countOfScoresBelowAvg++;
+        }
+        return countOfScoresBelowAvg;
+      }
+
+      const countOfTwo = getCountOf2(studentScore);
+      const countOfGoodScore = getCountofGoodScore(studentScore);
+      const countOfScoresBelowAvg = getCountOfScoresBelowAvg(studentScore);
+
+      document.write(`Количество двоек у ученика: ${countOfTwo} <br>`);
+      document.write(
+        `Количество хороших оценок у ученика: ${countOfGoodScore} <br>`
+      );
+      document.write(
+        `Количество оценок, которые меньше среднего балла ученика: ${countOfScoresBelowAvg} <br>`
+      );
+    </script>
+  </body>
+</html>
