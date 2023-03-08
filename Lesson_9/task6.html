@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №6</title>
+  </head>
+
+  <body>
+    <h1>
+      6. Дано масив елементів. Усі елементи, які більші за перший елемент
+      помножити на 2
+    </h1>
+    <script>
+      let usersNum = [11, -200, 400, 4, 37, -10, 112, -98, 38, 15, -14, 28];
+
+      function getNumbers(usersNum) {
+        usersNum.forEach((element, index, arrRef) => {
+          if (element > arrRef[0]) arrRef[index] *= 2;
+        });
+      }
+
+      getNumbers(usersNum);
+      document.write(`Числа больше первого элемента умножены на 2: ${usersNum}`);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <h1>
+      4. Дано масив елементів. Вивести на екран елементи, що більші за 100
+    </h1>
+    <script>
+      let usersNum = [11, 200, 400, 4, 37, 10, 112, 98, 38];
+
+      function getNumbers(usersNum) {
+        let result = [];
+        for (const item of usersNum) {
+          if (item > 100) result.push(item);
+        }
+        return result;
+      }
+
+      const result = getNumbers(usersNum);
+      document.write(`Числа больше 100: ${result}`);
+    </script>
+  </body>
+</html>

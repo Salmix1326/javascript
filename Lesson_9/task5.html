@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <h1>5. Дано масив елементів. Знайти добуток додатних елементів</h1>
+
+    <script>
+      let usersNum = [11, -200, 400, 4, 37, -10, 112, -98, 38, 15, -14, 28];
+
+      function getNumbers(usersNum) {
+        let totalSum = 1;
+        for (const item of usersNum) {
+          if (item > 0) totalSum *= item;
+        }
+        return totalSum;
+      }
+
+      const result = getNumbers(usersNum);
+      document.write(`Произведение положительных чисел в массиве: ${result}`);
+    </script>
+  </body>
+</html>
