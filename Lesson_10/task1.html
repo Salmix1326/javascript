@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <h1>
+      <span>Задача</span>. Дано історію цін на цінні папери за деякий період
+      (згенерувати від 1 до 10000)
+    </h1>
+    <ul>
+      <li>
+        Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+      </li>
+      <li>
+        Сформувати новий масив, у якому є номери тільки тих, що більші за 1000
+        грн.
+      </li>
+      <li>Сформувати список з тих цін, які більші за попереднє значення</li>
+      <li>
+        Сформувати новий масив, що міститиме значення цін у відсотках стосовно
+        максимального
+      </li>
+      <li>Підрахувати кількість змін цін</li>
+      <li>Визначити, чи є ціна, що менше 1000</li>
+      <li>Визначати, чи усі ціни більше за 1000</li>
+      <li>Підрахувати кількість цін, що більше за 1000</li>
+      <li>Підрахувати суму цін, що більше за 1000</li>
+      <li>Знайти першу ціну, що більше за 1000</li>
+      <li>Знайти індекс першої ціни, що більше за 1000</li>
+      <li>Знайти останню ціну, що більше за 1000</li>
+      <li>Знайти індекс останньої ціни, що більше за 1000</li>
+    </ul>
+    <script>
+      // Формируем массив данных
+      let countofPrices = 30;
+      function getRandomList(countofPrices) {
+        let priceList = new Array(countofPrices)
+          .fill(0)
+          .map((item) => Math.floor(Math.random() * 10000 + 1));
+        return priceList;
+      }
+      const priceList = getRandomList(countofPrices);
+      document.write(`Массив данных: ${priceList} <br>`);
+      // =========================================================================================================
+
+      // 1. Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+
+      let pricesGreaterThen1000 = priceList.filter((price) => price > 1000);
+      document.write(
+        `Массив чисел больше чем 1000: ${pricesGreaterThen1000} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 2. Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+
+      let pricesIndexGreaterThen1000 = priceList.reduce(
+        (prevValue, element, index) => {
+          if (element > 1000) {
+            return [...prevValue, index];
+          }
+          return prevValue;
+        },
+        []
+      );
+
+      document.write(
+        `Массив номеров больше чем 1000: ${pricesIndexGreaterThen1000} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 3. Сформувати список з тих цін, які більші за попереднє значення
+
+      let pricesWhichGreaterThenPrevPrices = priceList.reduce(
+        (prevValue, element, index, baseArr) => {
+          if (baseArr[index] > baseArr[index - 1]) {
+            return [...prevValue, baseArr[index]];
+          }
+          return prevValue;
+        },
+        []
+      );
+
+      console.log(pricesWhichGreaterThenPrevPrices);
+      document.write(
+        `Числа, которые больше, чем предыдущие число: ${pricesWhichGreaterThenPrevPrices} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 4. Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+
+      // Находим максимально число
+      let maxPrice = priceList.reduce((prevValue, element, index, baseArr) => {
+        if (prevValue <= baseArr[index]) {
+          return (prevValue = baseArr[index]);
+        }
+        return prevValue;
+      }, 0);
+
+      document.write(`Наибольшее число: ${maxPrice} <br>`);
+
+      // Вычисляем проценты
+      let pricesPercentfromMaxPrice = priceList.map((item, index, baseArr) =>
+        Math.floor((baseArr[index] / maxPrice) * 100)
+      );
+
+      document.write(
+        `Проценты чисел относительно наибольшего: ${pricesPercentfromMaxPrice} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 5. Підрахувати кількість змін цін
+
+      let priceChanges = priceList.reduce(
+        (prevValue, element, index, baseArr) => {
+          if (baseArr[index] !== baseArr[index + 1]) {
+            return (prevValue = prevValue + 1);
+          }
+          return prevValue;
+        },
+        0
+      );
+
+      document.write(`Количество изменений цен: ${priceChanges} <br>`);
+
+      // =========================================================================================================
+
+      // 6. Визначити, чи є ціна, що менше 1000
+
+      let ifsomePriceGreaterThen1000 = priceList.some(
+        (element) => element > 1000
+      );
+
+      document.write(
+        `Есть ли цена больше 1000 ?: ${ifsomePriceGreaterThen1000} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 7. Визначати, чи усі ціни більше за 1000
+
+      let ifeveryPriceGreaterThen1000 = priceList.every(
+        (element) => element > 1000
+      );
+
+      document.write(
+        `Все ли цены больше 1000 ?: ${ifeveryPriceGreaterThen1000} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 8. Підрахувати кількість цін, що більше за 1000
+
+      let CountofPricesWhichGreaterThen1000 = priceList.reduce(
+        (prevValue, element, index, baseArr) => {
+          if (element > 1000) {
+            return (prevValue = prevValue + 1);
+          }
+          return prevValue;
+        },
+        0
+      );
+
+      document.write(
+        `Количество цен больше чем 1000: ${CountofPricesWhichGreaterThen1000} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 9. Підрахувати суму цін, що більше за 1000
+
+      let SumofPricesWhichGreaterThen1000 = priceList.reduce(
+        (prevValue, element, index, baseArr) => {
+          if (element > 1000) {
+            return (prevValue = prevValue + element);
+          }
+          return prevValue;
+        },
+        0
+      );
+
+      document.write(
+        `Сумма цен больше чем 1000: ${SumofPricesWhichGreaterThen1000} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 10. Знайти першу ціну, що більше за 1000
+
+      let FirstPriceGreaterThen1000 = priceList.find(
+        (element) => element > 1000
+      );
+
+      document.write(
+        `Первая цена больше чем 1000: ${FirstPriceGreaterThen1000} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 11. Знайти індекс першої ціни, що більше за 1000
+
+      let FirstPriceIndexGreaterThen1000 = priceList.findIndex(
+        (element, index, baseArr) => {
+          if (baseArr[index] > 1000) return true;
+        }
+      ) + 1;
+
+      document.write(
+        `Номер первой цены больше чем 1000: ${FirstPriceIndexGreaterThen1000} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 12. Знайти останню ціну, що більше за 1000
+
+      let lastPricesWhichGreaterThen1000 = priceList.reduce(
+        (prevValue, element, index, baseArr) => {
+          if (element > 1000) {
+            return (prevValue = baseArr[index]);
+          }
+          return prevValue;
+        },
+        0
+      );
+
+      document.write(
+        `Последняя цена больше чем 1000: ${lastPricesWhichGreaterThen1000} <br>`
+      );
+
+      // =========================================================================================================
+
+      // 13. Знайти індекс останньої ціни, що більше за 1000
+
+      let lastPriceIndexGreaterThen1000 =
+        priceList.findLastIndex((element, index, baseArr) => {
+          if (baseArr[index] > 1000) return true;
+        }) + 1;
+
+      document.write(
+        `Последний номер цены больше чем 1000: ${lastPriceIndexGreaterThen1000} <br>`
+      );
+    </script>
+  </body>
+</html>
