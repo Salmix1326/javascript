@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <h1>
+      <span>Задача 1</span>. Дано масив 30 випадкових цілих чисел. Підрахувати
+      скільки було обмінів під час сортування бульбашкою
+    </h1>
+
+    <script>
+      const countofNums = 30;
+
+      function getRandomArray(countofNums) {
+        let arr = new Array(countofNums)
+          .fill(0)
+          .map((el) => Math.floor(Math.random() * 50) + 1);
+        return arr;
+      }
+
+      const arr = getRandomArray(countofNums);
+      let changes;
+      let counter = 0;
+      do {
+        changes = false;
+        for (let i = 0; i < arr.length - 1; i++) {
+          if (arr[i] > arr[i + 1]) {
+            let tmp = arr[i];
+            arr[i] = arr[i+1]
+            arr[i+1] = tmp
+            counter++
+            changes = true;
+          }
+        }
+      } while (changes);
+      console.log(arr);
+      document.write(`Изменений было произведено: ${counter}`)
+    </script>
+  </body>
+</html>
