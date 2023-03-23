@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Домашняя работа</title>
+  </head>
+
+  <body>
+    <div class="main-block">
+      <div class="main-block__item">
+        <h2>
+          <span>Задача 1</span>. Нехай x[0] = 1, x[i]=x[i-1] + 2i, де i =
+          1,2,3... Визначити x[10] . Розв’язати з використанням рекурсивних і
+          нерекурсивних алгоритмів
+        </h2>
+        <a href="task1.html">Задача №1</a>
+      </div>
+      <div class="main-block__item">
+        <h2>
+          <span>Задача 2</span>. Нехай x[0] = x[1] = 1, x[i] = x[i-1] + 2x[i-2]
+          де i = 1,2,3,4,5... Визначити x[n]. Розв’язати з використанням
+          рекурсивних і нерекурсивних алгоритмів
+        </h2>
+        <a href="task2.html">Задача №2</a>
+      </div>
+      <div class="main-block__item">
+        <h2>
+          <span>Задача 3</span>. З використанням замикань розробити ітератор,
+          тобто функцію, що буде поступово за окремими викликами видавати по
+          одне значення від заданого мінімального до заданого максимального.
+          Якщо значення досягне максимального, то наступним буде мінімальне
+          значення. З використанням цієї функції реалізувати перебір номерів
+          місяців.
+        </h2>
+        <a href="task3.html">Задача №3</a>
+      </div>
+      <div class="main-block__item">
+        <h2>
+          <span>Задача 4</span>. З використанням замикань розробити ітератор,
+          тобто функцію, що буде поступово за окремими викликами видавати по
+          одну букву наперед заданого слова. З використанням нього розробити гру
+          «Прекладач». Виводимо для користувача опис цього слова і по одну букву
+          користувач вводить переклад цього слова. Підрахувати кількість
+          вгаданих букв.
+        </h2>
+        <a href="task4.html">Задача №4</a>
+      </div>
+      <div class="main-block__item">
+        <h2>
+          <span>Задача 5</span>. Тренажер додавання. Кожні 10 секунд користувачу
+          задають випадковий приклад з додавання двох цифр і робиться перевірка.
+        </h2>
+        <a href="task5.html">Задача №5</a>
+      </div>
+      <div class="main-block__item">
+        <h2>
+          <span>Задача 6</span>. Через 20 секунд перейти на сайт ukr.net. Для
+          цього через 20 секунд після відкриття треба виконати команду
+          window.location.href = 'https://www.ukr.net/'
+        </h2>
+        <a href="task6.html">Задача №6</a>
+      </div>
+    </div>
+  </body>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      background: #505050;
+      padding: 50px;
+    }
+    .main-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .main-block__item {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    h2,
+    ol,
+    ul {
+      border: 1px solid white;
+      padding: 20px;
+      color: #bebfbd;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+    }
+    ul,
+    ol {
+      border: none;
+      padding: 0 0 0 20px;
+    }
+    li:not(:last-child) {
+      margin-bottom: 15px;
+    }
+    a {
+      font-size: 30px;
+      display: block;
+      background: #bebfbd;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+      font-size: 25px;
+      color: #505050;
+      text-decoration: none;
+      box-shadow: 0px 6px 1px 2px black;
+      transition: all 0.3s ease 0s;
+    }
+    a:hover {
+      transform: translateY(3px);
+      box-shadow: 0px 0px 5px 3px black inset;
+    }
+    span {
+      color: #ffffff;
+    }
+  </style>
+</html>

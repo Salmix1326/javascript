@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <h1>
+      <span>Задача 5</span>. Тренажер додавання. Кожні 10 секунд користувачу
+      задають випадковий приклад з додавання двох цифр і робиться перевірка.
+    </h1>
+
+    <script>
+
+      setInterval(() => {
+        let firstNum = Math.floor(Math.random() * 20) + 1;
+        let secondNum = Math.floor(Math.random() * 20) + 1;
+        let machineResult = firstNum + secondNum
+        let userAnswer = parseInt(prompt(`Сколько будет ${firstNum} + ${secondNum} ?`))
+        if(userAnswer === machineResult) alert("Правильно!")
+        else alert("Вы допустили ошибку при счете!")
+      }, 10000);
+      
+    </script>
+  </body>
+</html>

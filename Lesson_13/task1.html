@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <h1>
+      <span>Задача 1</span>. Нехай x[0] = 1, x[i]=x[i-1] + 2i, де i = 1,2,3...
+      Визначити x[10] . Розв’язати з використанням рекурсивних і нерекурсивних
+      алгоритмів
+    </h1>
+
+    <script>
+      // Методом рекурсии
+      function getNumber(i) {
+        if (i === 0) return 1;
+        else return getNumber(i - 1) + 2 * i;
+      }
+
+      let number = getNumber(10);
+      console.log(number);
+
+      // Методом цикла
+      let x = 0;
+      for (let i = 0; i < 11; i++) {
+        if (i === 0) x = 1;
+        else x = x + 2 * i;
+      }
+      console.log(x);
+    </script>
+  </body>
+</html>
