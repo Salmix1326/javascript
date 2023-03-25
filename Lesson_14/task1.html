@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h1 class="main-block_upper-title">
+      <span
+        >Задача 1 Описати масив об’єктів – сайтів розроблених компанією з
+        властивостями</span
+      >
+      <img src="img/photo.png" alt="" />
+      <p>Знайти:</p>
+      <ul>
+        <li>Загальну вартість усіх сайтів</li>
+        <li>Кількість сайтів, що було зроблено між 2000 та 2009 рр.</li>
+        <li>
+          Кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+        </li>
+        <li>
+          Створити загальний список усіх спонсорів (поки можуть повторюватись,
+          просто зібрати усі у масив)
+        </li>
+        <li>Знайти рік, коли прибуток був найбільшим</li>
+        <li>Упорядкувати список за спаданням прибутку</li>
+        <li>
+          Створити 2 окремих списки з копіями об’єктів, що містять сайти з
+          вартість до 10000 і більше 10000
+        </li>
+      </ul>
+    </h1>
+
+    <script>
+      // Массив обьектов
+      let siteList = [
+        {
+          title: "Electronics",
+          owner: "James Smith",
+          sponsors: [
+            {
+              surname: "Anders",
+              name: "Michael",
+              pay: 10000,
+            },
+            {
+              surname: "Stallone",
+              name: "Sylvester",
+              pay: 1000000,
+            },
+            {
+              surname: "Kein",
+              name: "Alex",
+              pay: 1000,
+            },
+          ],
+          release: 2010,
+          price: 20000,
+        },
+        {
+          title: "Best Choice",
+          owner: "James Smith",
+          sponsors: [
+            {
+              surname: "Konor",
+              name: "John",
+              pay: 15000,
+            },
+            {
+              surname: "Pain",
+              name: "Elizabeth",
+              pay: 32000,
+            },
+            {
+              surname: "Hardy",
+              name: "Tom",
+              pay: 1000000,
+            },
+          ],
+          release: 2008,
+          price: 25000,
+        },
+        {
+          title: "Electronics",
+          owner: "James Smith",
+          sponsors: [
+            {
+              surname: "Red",
+              name: "Martin",
+              pay: 15000,
+            },
+            {
+              surname: "Loose",
+              name: "Anna",
+              pay: 1000000,
+            },
+            {
+              surname: "Cruise",
+              name: "Tom",
+              pay: 1000000,
+            },
+          ],
+          release: 2006,
+          price: 5000,
+        },
+        {
+          title: "Sites",
+          owner: "James Smith",
+          sponsors: [
+            {
+              surname: "Blue",
+              name: "Loki",
+              pay: 500,
+            },
+            {
+              surname: "Kind",
+              name: "Braun",
+              pay: 1000,
+            },
+            {
+              surname: "Adams",
+              name: "Lary",
+              pay: 1000,
+            },
+          ],
+          release: 2006,
+          price: 2000,
+        },
+      ];
+
+      // Знайти
+      // 1. Загальну вартість усіх сайтів
+
+      let totalSitesPrice = siteList.reduce(
+        (prevValue, site) => prevValue + site.price,
+        0
+      );
+      document.write(`Общая цена сайтов: ${totalSitesPrice}$ <br>`);
+
+      // 2. Кількість сайтів, що було зроблено між 2000 та 2009 рр.
+      let countOf2000sSites = siteList.reduce(
+        (prevValue, site) =>
+          site.release >= 2000 && site.release <= 2009
+            ? prevValue + 1
+            : prevValue,
+        0
+      );
+      document.write(
+        `Количество сайтов, сделанных в 2000-2009 годах: ${countOf2000sSites} <br>`
+      );
+
+      // 3. Кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+
+      let countOfSitesWhereSponsorPayGreatThan100k = siteList.reduce(
+        (prevValue, site) =>
+          prevValue +
+          site.sponsors.reduce(
+            (prevValue, sponsor) =>
+              sponsor.pay > 100000 ? prevValue + 1 : prevValue,
+            0
+          ),
+        0
+      );
+      document.write(
+        `Количество сайтов, где сумма спонсора больше 100000: ${countOfSitesWhereSponsorPayGreatThan100k} <br>`
+      );
+
+      // 4. Cтворити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+
+      let sponsorList = [];
+
+      for (const site of siteList) {
+        sponsorList.push(...site.sponsors);
+      }
+
+      console.log(sponsorList);
+
+      // 5. Знайти рік, коли прибуток був найбільшим
+      let maxPrice = siteList.reduce(
+        (prevValue, site) =>
+          site.price > prevValue ? (prevValue = site.price) : prevValue,
+        0
+      );
+      let bestProfitYear = siteList.reduce(
+        (prevValue, site) =>
+          site.price === maxPrice ? (prevValue = site.release) : prevValue,
+        0
+      );
+      document.write(`Самый большой доход был в году: ${bestProfitYear}`);
+
+      // 6. Упорядкувати список за спаданням прибутку
+      let changes;
+      do {
+        changes = false;
+        for (let i = 0; i < siteList.length - 1; i++) {
+          if (siteList[i].price < siteList[i + 1].price) {
+            let tmp = siteList[i];
+            siteList[i] = siteList[i + 1];
+            siteList[i + 1] = tmp;
+            changes = true;
+          }
+        }
+      } while (changes);
+      console.log(siteList);
+
+      // 7. Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+      let lower10000List = siteList.filter((site) => site.price < 10000);
+      let greater10000List = siteList.filter((site) => site.price > 10000);
+      console.log(lower10000List);
+      console.log(greater10000List);
+    </script>
+  </body>
+</html>
