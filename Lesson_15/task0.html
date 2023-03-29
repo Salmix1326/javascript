@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №0</title>
+  </head>
+
+  <body>
+    <h1 class="main-block_upper-title">
+      <span>Задача 0</span>. Дано два об’єкта. Обидва містять масив цілих чисел.
+      При цьому у одному з них є функція знаходження суми, а у іншому – функція
+      для знаходження добутку тих, які знаходяться між заданими мінімальним і
+      максимальних значенням.
+    </h1>
+    <script>
+
+      // С использованием call
+      let obj1 = {
+        scores: [1, 30, 20, 2, 4, 7, 9, 11, 5],
+        sum: function getSum() {
+          return this.scores.reduce((prevValue, el) => prevValue + el, 0);
+        },
+      };
+
+      let obj2 = {
+        scores: [1, 21, 15, 2, 4, 7, 19, 8, 2],
+        multi: function getMilti() {
+          return this.scores.reduce((prevValue, el) => prevValue * el, 1);
+        },
+      };
+
+      console.log(obj1.sum.call(obj2));
+      console.log(obj2.multi.call(obj1));
+
+      // С использованием apply
+      let obj3 = {
+        scores: [1, 30, 20, 2, 4, 7, 9, 11, 5],
+        sum: function getSum(val1, val2) {
+          return this.scores.reduce((prevValue, el) => prevValue + el, 0) + val1 * val2
+        },
+      };
+
+      let obj4 = {
+        scores: [1, 21, 15, 2, 4, 7, 19, 8, 2],
+        multi: function getMilti(val1, val2) {
+          return this.scores.reduce((prevValue, el) => prevValue * el, 1) * val1 / val2
+
+        },
+      };
+
+      console.log(obj3.sum.apply(obj2, [6, 8]));
+      console.log(obj4.multi.apply(obj1, [10, 5]));
+    </script>
+  </body>
+</html>
