@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h1 class="main-block_upper-title">
+      <span
+        >Задача 1. Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому
+        квадраті є заєць і 0 в іншому випадку.</span
+      >
+      <img src="img/img1.png" alt="" />
+    </h1>
+    <script>
+      let range = {
+        field: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        bang: function shot() {
+          for (let i = 0; i < this.field.length; i++) {
+            let userBang = parseInt(
+              prompt(
+                `Вот поле с зайцами ${this.field}. Задайте значение поля для стрельбы от 1 до ${this.field.length}`
+              )
+            );
+            this.field[userBang - 1] = 0;
+          }
+        },
+      };
+      range.bang();
+      document.write("Вы попали во всех зайцев!");
+    </script>
+  </body>
+</html>

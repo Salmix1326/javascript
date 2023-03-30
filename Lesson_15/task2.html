@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h1>
+      <span>Задача 2. Створити об’єкт «Авто».</span>
+      <img src="img/img2.png" alt="" />
+    </h1>
+
+    <script>
+      let auto = {
+        title: "Toyota",
+        fuelСapacity: 70,
+        currentFuelCapacity: 30,
+        passangersCapacity: 5,
+        currentPassangers: 3,
+
+        refuel: function () {
+          let litres = parseInt(
+            prompt("На сколько литров хотите заправить машину?")
+          );
+          return (this.currentFuelCapacity += litres);
+        },
+
+        showCurrentPassangers: function () {
+          alert(
+            `В машине сейчас находятся ${this.currentPassangers} пассажиров`
+          );
+        },
+
+        addNewPassanger: function () {
+          let countOfPassangers = parseInt(
+            prompt("Сколько хотите посадить пассажиров в машину?")
+          );
+          return (this.currentPassangers += countOfPassangers);
+        },
+
+        landPassanger: function () {
+          let countOfPassangers = parseInt(
+            prompt("Сколько хотите высадить пассажиров из машины?")
+          );
+          return (this.currentPassangers -= countOfPassangers);
+        },
+
+        autoStats: function () {
+          document.write(`Текущее состояние машины <br>`);
+          document.write(
+            `Заполненость бака - ${this.currentFuelCapacity} <br>`
+          );
+          document.write(
+            `Количество пассажиров - ${this.currentPassangers} <br>`
+          );
+        },
+      };
+    </script>
+  </body>
+</html>
