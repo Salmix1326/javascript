@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 2.</span>
+      Створити клас TMoney для роботи з грошовими сумами. Сума повинна
+      зберігатися у вигляді доларового еквіваленту. Реалізувати методи
+      додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та
+      визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс
+      долара зберігати в окремому полі.
+    </h2>
+
+    <script>
+      class TMoney {
+        #money;
+        constructor(countOfMoney, exchangeRate) {
+          this.dollarRate = exchangeRate;
+          this.Money = countOfMoney / this.dollarRate;
+        }
+
+        get Money() {
+          return this.#money;
+        }
+
+        set Money(countOfMoney) {
+          if (countOfMoney < 0) throw new Error("Count of money is incorrect");
+          this.#money = countOfMoney;
+        }
+
+        getMoney(userCount) {
+
+          if (this.Money * this.dollarRate >= userCount && userCount > 0) {
+            this.Money =
+              (this.Money * this.dollarRate - userCount) / this.dollarRate;
+            console.log(this.Money);
+
+            alert(
+              `Вы успешно сняли ${userCount} гривен. Остаток: ${
+                this.Money * this.dollarRate
+              }`
+            );
+          }
+        }
+
+        addMoney(userCount) {
+
+          if (userCount > 0) {
+            this.Money =
+              (this.Money * this.dollarRate + userCount) / this.dollarRate;
+            alert(
+              `Вы успешно вложили ${userCount} гривен. Остаток ${
+                this.Money * this.dollarRate
+              }`
+            );
+          }
+        }
+
+        newDollarRate() {
+          let newDollarRate =
+            (this.Money * this.dollarRate + 100) / this.Money
+          alert(`Новый курс доллара: ${newDollarRate}`);
+        }
+
+        toString() {
+          this.getMoney();
+          document.write(`Состояние счета: ${this.Money} долларов.`)
+        }
+      }
+
+      new TMoney(500, 35)
+    </script>
+  </body>
+</html>

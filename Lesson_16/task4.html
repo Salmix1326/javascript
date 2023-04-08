@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 4</span>. Створити клас TBankomat, який моделює роботу
+      банкомата. Клас повинен містити поля для зберігання кількості купюр
+      кожного із номіналів від 5 до 200 гривень. Реалізувати методи знаходження
+      максимальної та мінімальної сум, які може видати банкомат, та метод зняття
+      деякої суми.
+    </h2>
+    <script>
+      class TBankomat {
+        #banknote200;
+        constructor(
+          banknoteof5,
+          banknoteof10,
+          banknoteof20,
+          banknoteof50,
+          banknoteof100,
+          banknoteof200
+        ) {
+          this.banknoteof5 = banknoteof5;
+          this.banknoteof10 = banknoteof10;
+          this.banknoteof20 = banknoteof20;
+          this.banknoteof50 = banknoteof50;
+          this.banknoteof100 = banknoteof100;
+          this.banknoteof200 = banknoteof200;
+        }
+
+        get Banknote200() {
+          return this.#banknote200;
+        }
+
+        set Banknote200(banknoteof200) {
+          if (banknoteof200 < 0)
+            throw new Error("You do not have equivalent of this money");
+          this.#banknote200 = banknoteof200;
+        }
+
+        getMaxSum() {
+          return (
+            this.banknoteof5 * 5 +
+            this.banknoteof10 * 10 +
+            this.banknoteof20 * 20 +
+            this.banknoteof50 * 50 +
+            this.banknoteof100 * 100 +
+            this.banknoteof200 * 200
+          );
+        }
+
+        MinSum() {
+          if (getMaxSum() >= 50) alert("Вы можете снять минимум 50 грн");
+          else alert("Нехватает денег для снятия минимальной суммы");
+        }
+
+        getMoney(value) {
+          let sum = 0;
+          if (this.getMaxSum() >= value) {
+            while (this.banknoteof200 > 0 && sum <= value) {
+              if (sum + 200 <= value) {
+                sum += 200;
+                this.banknoteof200--;
+              } else break;
+            }
+            while (this.banknoteof100 > 0 && sum <= value) {
+              if (sum + 100 <= value) {
+                sum += 100;
+                this.banknoteof100--;
+              } else break;
+            }
+            while (this.banknoteof50 > 0 && sum <= value) {
+              if (sum + 50 <= value) {
+                sum += 50;
+                this.banknoteof50--;
+              } else break;
+            }
+            while (this.banknoteof20 > 0 && sum <= value) {
+              if (sum + 20 <= value) {
+                sum += 20;
+                this.banknoteof20--;
+              } else break;
+            }
+            while (this.banknoteof10 > 0 && sum <= value) {
+              if (sum + 10 <= value) {
+                sum += 10;
+                this.banknoteof10--;
+              } else break;
+            }
+            while (this.banknoteof5 > 0 && sum <= value) {
+              if (sum + 5 <= value) {
+                sum += 5;
+                this.banknoteof5--;
+              } else break;
+            }
+          }
+          return sum;
+        }
+        toString(value) {
+          document.write(
+            `Вы успешно сняли ${this.getMoney(
+              value
+            )}. Остаток на счету ${this.getMaxSum()} <br>`
+          );
+          document.write(`Количество номиналов: <br> 5:${this.banknoteof5} <br> 10:${this.banknoteof10} <br> 20:${this.banknoteof20} <br> 50:${this.banknoteof50} <br> 100:${this.banknoteof100} <br> 200:${this.banknoteof200} <br>`)
+        }
+      }
+
+      new TBankomat(30, 20, 20, 100, 3, 6).toString(500);
+    </script>
+  </body>
+</html>

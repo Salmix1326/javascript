@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №3</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 3. Об’єкт “Фірма” (використати члени-класи)</span>
+      <img src="img/img01.png" alt="" />
+    </h2>
+    <script>
+      class FoundDate {
+        constructor(month, year) {
+          this.month = month;
+          this.year = year;
+        }
+
+        getYear() {
+          return this.year;
+        }
+
+        toString() {
+          return `${this.month}, ${this.year}`;
+        }
+      }
+
+      class Services {
+        constructor(title, price, hoursOfWork) {
+          this.title = title;
+          this.price = price;
+          this.time = hoursOfWork;
+        }
+
+        toString() {
+          return `Услуга: ${this.title}. Цена: ${this.price} грн. Время работы ${this.time} часов <br>`;
+        }
+      }
+
+      let servicesList = [
+        new Services("Разработка сайта", 10000, 100),
+        new Services("Разработка ПО", 15000, 120),
+        new Services("Создание мобильного приложения", 5000, 80),
+      ];
+
+      class Branches {
+        constructor(country, city, street, houseNumber) {
+          this.country = country;
+          this.city = city;
+          this.street = street;
+          this.houseNumber = houseNumber;
+        }
+
+        toString() {
+          return `Страна: ${this.country}. Город: ${this.city}. Улица: ${this.street}, ${this.houseNumber}<br>`;
+        }
+      }
+
+      let branchList = [
+        new Branches("Украина", "Харьков", "Сумская", 28),
+        new Branches("Украина", "Львов", "Свободы", 28),
+        new Branches("Украина", "Харьков", "Победы", 31),
+      ];
+
+      class Firm {
+        constructor(name, [year, month], branchList, servicesList) {
+          this.name = name;
+          this.date = new FoundDate(year, month);
+          this.branchList = branchList;
+          this.servicesList = servicesList;
+        }
+
+        getYearsofWork() {
+          return new Date().getFullYear() - this.date.getYear();
+        }
+
+        getBranches(userCity) {
+          let branchesArray = [];
+          for (const branch of this.branchList) {
+            if (branch.city === userCity) branchesArray.push(branch);
+          }
+          return branchesArray.join(" ");
+        }
+
+        getServices(price, time) {
+          let servicessArray = [];
+          for (const service of this.servicesList) {
+            if (service.price === price && service.time === time)
+              servicessArray.push(service);
+          }
+          return servicessArray.join(" ");
+        }
+
+        toString(userCity) {
+          document.write(
+            `Фирма: ${this.name} <br> Год основания: ${this.date.month}, ${
+              this.date.year
+            } <br> Года работы: ${this.getYearsofWork()} <br> Филиалы: <br> ${this.getBranches(userCity)}`
+          );
+        }
+      }
+
+      new Firm("IT Inc", [05, 2020], branchList, servicesList).toString(
+        "Харьков"
+      );
+    </script>
+  </body>
+</html>
