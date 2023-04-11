@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 5</span>. Особиста бібліотека. Картотека домашньої
+      бібліотеки: дані книги (автори (піб, рік народження, короткий опис), назва
+      книги, жанр, видавництво (назва, реєстраційний номер, рік засування)).
+      Реалізувати розділи бібліотеки (спеціальна література, хобі, домашнє
+      господарство і т.д.), походження книги і наявність на даний час.
+      Організувати додавання/вилучення книг та вибір книг за назвою, за ПІБ
+      автора, за видавництвом.
+    </h2>
+    <script>
+      // Авторы ==============================================================================
+      class Author {
+        constructor(initData) {
+          Object.assign(this, initData);
+        }
+
+        toString() {
+          return `ФИО автора: ${this.name}. Год рождения: ${this.birthday}. Об авторе: ${this.about}`;
+        }
+      }
+      // Издательства ========================================================================
+      class Publisher {
+        constructor(initData) {
+          Object.assign(this, initData);
+        }
+
+        toString() {
+          return `Название: ${this.title}. Номер: ${this.number}. Год основания: ${this.year}`;
+        }
+      }
+      // Список авторов ========================================================================
+      let authorsList = [
+        new Author({
+          name: "John Week",
+          birthday: "20.08.1981",
+          about: "Очень любит писать романы",
+        }),
+        new Author({
+          name: "Maria Fire",
+          birthday: "10.07.1973",
+          about: "Одна из самых популярных писателей в 2000-ом году",
+        }),
+        new Author({
+          name: "Ivan Kobzar",
+          birthday: "01.02.1955",
+          about: "Литература для него всё",
+        }),
+      ];
+      // Список издателй ========================================================================
+      let publisherList = [
+        new Publisher({ title: "Ранок", number: 234235, year: 2000 }),
+        new Publisher({ title: "LitUA", number: 2645635, year: 2020 }),
+        new Publisher({ title: "GustavLEBooks", number: 29879673, year: 1967 }),
+      ];
+      // Книги ========================================================================
+      class Book {
+        constructor(initData) {
+          Object.assign(this, initData);
+        }
+
+        toString() {
+          return `Авторы: ${this.authors} <br> Название: ${this.title}. <br> Жанр: ${this.genre}. <br> Издательство: ${this.publisher}. <br> Происхождения книги: ${this.type}. <br> В имении на данный момент: ${this.ableBook} <br>`;
+        }
+      }
+      // Раздел 1 ========================================================================
+      class SpecialLit {
+        constructor(initData) {
+          Object.assign(this, initData);
+        }
+
+        toString() {
+          return `Название раздела: ${this.title}. <br> Cписок книг в разделе: <br><br>${this.bookArray} `;
+        }
+      }
+
+      let specialLit = [
+        new Book({
+          authors: [authorsList[0], authorsList[1]],
+          title: "Бурные вечера",
+          genre: "Роман",
+          publisher: publisherList[0],
+          type: "Куплена",
+          ableBook: "В наличии",
+        }),
+        new Book({
+          authors: authorsList[1],
+          title: "Удивительная природа Африки",
+          genre: "Приключения",
+          publisher: publisherList[2],
+          type: "Подарена",
+          ableBook: "Нет в наличии",
+        }),
+      ].join("<br>");
+      // Раздел 2 ========================================================================
+      class Hobby {
+        constructor(initData) {
+          Object.assign(this, initData);
+        }
+
+        toString() {
+          return `Название раздела: ${this.title}. <br> Cписок книг в разделе: <br><br>${this.bookArray}`;
+        }
+      }
+
+      let hobby = [
+        new Book({
+          authors: authorsList[0],
+          title: "Абрамс и его преследователи",
+          genre: "Драма",
+          publisher: publisherList[1],
+          type: "Куплена",
+          ableBook: "В наличии",
+        }),
+        new Book({
+          authors: authorsList[2],
+          title: "Укротители снов",
+          genre: "Фантастика",
+          publisher: publisherList[0],
+          type: "Подарена",
+          ableBook: "В наличии",
+        }),
+      ].join("<br>");
+      // Раздел 3 ========================================================================
+      class Household {
+        constructor(initData) {
+          Object.assign(this, initData);
+        }
+
+        toString() {
+          return `Название раздела: ${this.title}. <br> Cписок книг в разделе: <br><br>${this.bookArray}`;
+        }
+      }
+
+      let household = [
+        new Book({
+          authors: authorsList[0],
+          title: "Как выращивать помидоры",
+          genre: "Домашнее хозяйство",
+          publisher: publisherList[1],
+          type: "Подарена",
+          ableBook: "В наличии",
+        }),
+        new Book({
+          authors: authorsList[2],
+          title: "Лучше пожевать петрушку",
+          genre: "Домашнее хозяйство",
+          publisher: publisherList[0],
+          type: "Куплена",
+          ableBook: "В наличии",
+        }),
+      ].join("<br>");
+      // Список разделов ========================================================================
+      let tomList = [
+        new SpecialLit({
+          title: "Cпециальная литература",
+          bookArray: specialLit,
+        }),
+        new Hobby({
+          title: "Хобби",
+          bookArray: hobby,
+        }),
+        new Household({
+          title: "Домашнее хозяйство",
+          bookArray: household,
+        }),
+      ].join("<br>");
+      // Библиотека ========================================================================
+      class Library {
+        constructor(tomList) {
+          this.toms = tomList;
+          this.authors = authorsList;
+          this.publishers = publisherList;
+        }
+        // Новая книга ========================================================================
+        addNewBook(
+          tomName,
+          authorName,
+          title,
+          genre,
+          publisherName,
+          type,
+          ableBook
+        ) {
+          // Проверка на сущ. раздела ===================
+          let tom = this.toms.find((tom) => tom.title === tomName);
+          if (tom) {
+            // Проверка на суш. автора ===================
+            let author = this.authors.find(
+              (author) => author.name === authorName
+            );
+            // Если нет - добавляем ===================
+            if (!author) {
+              let newAuthorName = prompt("Введите имя автора");
+              let newAuthorBirthday = prompt("Введите день Рождения автора");
+              let newAuthorAbout = prompt("Введите описание автора");
+              author = new Author({
+                name: newAuthorName,
+                birthday: newAuthorBirthday,
+                about: newAuthorAbout,
+              });
+              this.authors.push(author);
+            }
+            // Проверка на суш. издательства ===================
+            let publisher = this.publishers.find(
+              (publisher) => publisher.title === publisherName
+            );
+            // Если нет - добавляем ===================
+            if (!publisher) {
+              let newAuthorName = prompt("Введите имя автора");
+              let newAuthorBirthday = prompt("Введите день Рождения автора");
+              let newAuthorAbout = prompt("Введите описание автора");
+              publisher = new Publisher({
+                title: newPublisherTitle,
+                number: newPublisherNumber,
+                year: newPublisherYear,
+              });
+              this.publishers.push(publisher);
+            }
+            // Данные книги ===================
+            const book = new Book({
+              authors: [author],
+              title,
+              genre,
+              publisher,
+              type,
+              ableBook,
+            });
+            tom.bookArray.push(book);
+          } else {
+            // Если небыло раздела - создаем раздел и добавляем книгу туда(снова вызываем метод добавления книги) ===================
+            tom = new Tom({ title: tomName, bookArray: [] });
+            this.toms.push(tom);
+            this.addNewBook(
+              tomName,
+              authorName,
+              title,
+              genre,
+              publisherName,
+              type,
+              ableBook
+            );
+          }
+        }
+        // Удаление книги ===================
+        removeBook(tomName, title) {
+          let tom = this.toms.find((tom) => tom.title === tomName);
+
+          if (tom) {
+            tom.bookArray = tom.bookArray.filter(
+              (book) => book.title !== title
+            );
+          }
+        }
+        // Поиск по: название ===================
+        selectBookByTitle(tomName, title) {
+          let tom = this.toms.find((tom) => tom.title === tomName);
+
+          if (tom) {
+            tom.bookArray = tom.bookArray.filter((book) => {
+              if (book.title === title)
+                document.write(`Ваша книга: <br> ${book}`);
+            });
+          }
+        }
+        // Поиск по: имя автора ===================
+        selectBookByAuthorName(tomName, authorName) {
+          let tom = this.toms.find((tom) => tom.title === tomName);
+
+          if (tom) {
+            tom.bookArray = tom.bookArray.filter((book) => {
+              if (book.authors.name === authorName)
+                document.write(`Ваша книга: <br> ${book}`);
+            });
+          }
+        }
+        // Поиск по: издательство ===================
+        selectBookByPublisher(tomName, publisherName) {
+          let tom = this.toms.find((tom) => tom.title === tomName);
+
+          if (tom) {
+            tom.bookArray = tom.bookArray.filter((book) => {
+              if (book.publisher.title === publisherName)
+                document.write(`Ваша книга: <br> ${book}`);
+            });
+          }
+        }
+
+        // Для отдельных нахождений данных
+        getNamesOfToms() {
+          let namesArray = [];
+          for (const tom of this.toms) {
+            namesArray.push(tom.title);
+          }
+          return `${namesArray}`;
+        }
+
+        getArrayofAllBooks() {
+          let newbooksArray = [];
+          for (const tom of this.toms) {
+            newbooksArray.push([tom.bookArray]);
+          }
+          return newbooksArray.join("<br>");
+        }
+        // Вывод библиотеки ===================
+        toString() {
+          document.write(
+            `Ваша библиотека <br> ======================================== <br> ${this.toms}`
+          );
+        }
+      }
+
+      let library = new Library(tomList).toString();
+    </script>
+  </body>
+</html>

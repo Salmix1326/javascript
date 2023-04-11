@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 4</span>. Склад. База товарів, які зберігаються на складі:
+      назва товару, одиниця виміру, кількість, фірма виробник (назва,
+      реєстраційний номер). Організувати реєстрацію/відвантаження товарів,
+      фільтрація за назвою товару, фільтрація за назвою фірми
+    </h2>
+    <script>
+      class Product {
+        constructor(initData) {
+          Object.assign(this, initData);
+        }
+
+        toString() {
+          return `Название ${this.title}. Единица измерения: ${this.scale}. Количество: ${this.amount}. Производитель: ${this.firmTitle}. Номер: ${this.firmNumber}`;
+        }
+      }
+
+      class Firm {
+        constructor(initData) {
+          Object.assign(this, initData);
+        }
+
+        toString() {
+          return `Название: ${firm.title}. Номер: ${firm.number}`;
+        }
+      }
+
+      let firmList = [
+        new Firm({ title: "Фрукты для Вас", number: 33004564 }),
+        new Firm({ title: "Розетка", number: 330435354 }),
+        new Firm({ title: "Sandora", number: 14576585 }),
+      ];
+
+      let productList = [
+        new Product({
+          title: "Яблоко",
+          scale: "20 кг",
+          amount: 100,
+          firmTitle: firmList[0].title,
+          firmNumber: firmList[0].number,
+        }),
+        new Product({
+          title: "Груши",
+          scale: "10кг",
+          amount: 20,
+          firmTitle: firmList[0].title,
+          firmNumber: firmList[0].number,
+        }),
+        new Product({
+          title: "Самокат",
+          scale: "5кг",
+          amount: 25,
+          firmTitle: firmList[1].title,
+          firmNumber: firmList[1].number,
+        }),
+        new Product({
+          title: "Сок",
+          scale: "100л",
+          amount: 25,
+          firmTitle: firmList[2].title,
+          firmNumber: firmList[2].number,
+        }),
+      ];
+
+      class Storage {
+        constructor(productList, firmList) {
+          this.products = productList;
+          this.firms = firmList;
+        }
+
+        newProduct(title, scale, amount, firmTitle, firmNumber) {
+          this.products.push(
+            new Product({
+              title: title,
+              scale: scale,
+              amount: amount,
+              firmTitle: firmTitle,
+              firmNumber: firmNumber,
+            })
+          );
+
+          return this.products;
+        }
+
+        deleteProduct(userValue) {
+          this.products = this.products.filter((el) => el.title !== userValue);
+          return this.products;
+        }
+
+        findProductByTitle(userValue) {
+          this.products = this.products.filter((el) => el.title === userValue);
+          return this.products;
+        }
+
+        findProductByFirmTitle(userValue) {
+          this.products = this.products.filter(
+            (el) => el.firmTitle === userValue
+          );
+          return this.products;
+        }
+      }
+
+      let s1 = new Storage(productList, firmList).findProductByFirmTitle(
+        "Sandora"
+      );
+
+      console.log(s1);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2 class="main-block_upper-title">
+      <span>Задача 1</span>. Створити клас, що дозволяє виконувати такі операції
+      над масивами: знаходження кількості додатних, кількості від’ємних,
+      кількість входжень деякого числа (статичні методи)
+    </h2>
+    <script>
+      let someArr = [3, -7, 8, 65, -430, 6, 58, -8, 0, 87, -68, 767, -4, 6];
+
+      class Calculator {
+        constructor(arr) {
+          this.arrofnumbers = arr;
+        }
+
+        static countOfPositiveNum(arr) {
+          return arr.arrofnumbers.reduce((prevNum, el) => {
+            if (el > 0) return prevNum + 1;
+            else return prevNum;
+          }, 0);
+        }
+
+        static countOfNegativeNum(arr) {
+          return arr.arrofnumbers.reduce((prevNum, el) => {
+            if (el < 0) return prevNum + 1;
+            else return prevNum;
+          }, 0);
+        }
+
+        static countOfIntervalNum(arr, min, max) {
+          return arr.arrofnumbers.reduce((prevNum, el) => {
+            if (el >= min && el <= max) return prevNum + 1;
+            else return prevNum;
+          }, 0);
+        }
+      }
+
+      arr1 = new Calculator(someArr);
+      console.log(Calculator.countOfIntervalNum(arr1, 10, 250));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №6</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 6.</span>
+      <p>
+        Дано два класи MultChecker (клас для перевірки таблиці множення -
+        рандомно генеруються числа, які треба перемножати), AddChecker (клас для
+        перевірки додавання - рандомно генеруються числа у заданому діапазоні,
+        які треба додавати). Обидва класи надсилають результати тестування
+        об'єкту класу Hystory, який зберігає історію тестування у масиві у
+        вигляді об'єктів
+      </p>
+      <p>
+        Приклад.
+        <span>testsList= [ {firstNum:1, secondNum:5,opration:’*’,</span>
+        <span>userAnswer:7, correctAnswer:5}, {firstNum:3,</span>
+        <span>secondNum:4,opration:’+’, userAnswer:7, correctAnswer:7}]</span>
+      </p>
+      <p>
+        Можна створити окремий клас TestData, який описує один такий тест і у
+        якому будуть ці поля. Розробити клас TestManager, який використовуючи ці
+        класи за допомогою таймера періодично генерує якісь N задач (рандомно
+        вибираємо, що опитувати: додавання чи множення) і проводить опитування.
+        Результати тестування додаються в об’єкт History. Зробити так, щоб
+        об'єкт такого класу можна було створити тільки один. Коли зроблено ці N
+        задач вивести усю історію на екран.
+      </p>
+    </h2>
+    <script>
+      class Hystory {
+        static hystoryList = [];
+        constructor(initData) {
+          Object.assign(this, initData);
+        }
+
+        add(initData) {
+          Hystory.hystoryList.push(initData);
+        }
+
+        toString() {
+          for (const item of Hystory.hystoryList) {
+            document.write(`Первое число: ${item.firstnum} Второе число: ${item.secondNum} Операция: ${item.operation} Ответ пользователя: ${item.userAnswer} Правильный ответ: ${item.correctAnswer} <br>`);
+          }
+        }
+      }
+
+      class MultChecker {
+        constructor() {
+          this.hystory = new Hystory();
+        }
+
+        operation() {
+          let randomNum1 = Math.floor(Math.random() * 10) + 1;
+          let randomNum2 = Math.floor(Math.random() * 10) + 1;
+          const trueAnswer = randomNum1 * randomNum2;
+          const userAnswer = parseInt(
+            prompt(`Сколько будет ${randomNum1} * ${randomNum2} ?`)
+          );
+          if (userAnswer === trueAnswer) alert("Правильно!");
+          else alert(`Неправильно, правильный ответ: ${trueAnswer}`);
+          this.hystory.add({
+            firstnum: randomNum1,
+            secondNum: randomNum2,
+            operation: "*",
+            userAnswer: userAnswer,
+            correctAnswer: trueAnswer,
+          });
+        }
+      }
+
+      class AddChecker {
+        constructor() {
+          this.hystory = new Hystory();
+        }
+
+        operation() {
+          let randomNum1 = Math.floor(Math.random() * 10) + 1;
+          let randomNum2 = Math.floor(Math.random() * 10) + 1;
+          const trueAnswer = randomNum1 + randomNum2;
+          const userAnswer = parseInt(
+            prompt(`Сколько будет ${randomNum1} + ${randomNum2} ?`)
+          );
+          if (userAnswer === trueAnswer) alert("Правильно!");
+          else alert(`Неправильно, правильный ответ: ${trueAnswer}`);
+          this.hystory.add({
+            firstnum: randomNum1,
+            secondNum: randomNum2,
+            operation: "*",
+            userAnswer: userAnswer,
+            correctAnswer: trueAnswer,
+          });
+        }
+      }
+
+      class TestManager {
+        static manager;
+        constructor() {
+          if (TestManager.manager) return TestManager.manager;
+          TestManager.manager = this;
+        }
+
+        randomOperation() {
+          for (
+            let countOfOperations = 0;
+            countOfOperations < 2;
+            countOfOperations++
+          ) {
+            const randomNum = Math.floor(Math.random() * 2) + 1;
+            if (randomNum === 1) {
+              new MultChecker().operation();
+            } else {
+              new AddChecker().operation();
+            }
+          }
+        }
+      }
+
+      new TestManager().randomOperation();
+      new Hystory().toString();
+    </script>
+  </body>
+</html>
