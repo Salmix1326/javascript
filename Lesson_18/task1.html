@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+
+      label {
+        display: block;
+      }
+    </style>
+    <h2 class="main-block_upper-title">
+      <span>Задача 1</span> Розробити калькулятор
+    </h2>
+    <label>
+      First Number
+      <input id="num1" type="number" />
+    </label>
+    <label>
+      Second Number
+      <input id="num2" type="number" />
+    </label>
+    <button onclick="sum()">Прибавить</button>
+    <button onclick="dif()">Отнять</button>
+    <button onclick="multi()">Умножить</button>
+    <button onclick="divide()">Разделить</button>
+    <label>
+      Result
+      <input id="res" type="text" />
+    </label>
+    <script>
+      function sum() {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+        let sum = num1 + num2;
+        document.getElementById("res").value = sum;
+      }
+      function dif() {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+        let dif = num1 - num2;
+        document.getElementById("res").value = dif;
+      }
+      function multi() {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+        let multi = num1 * num2;
+        document.getElementById("res").value = multi;
+      }
+      function divide() {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+        let divide = num1 / num2;
+        document.getElementById("res").value = divide;
+      }
+    </script>
+  </body>
+</html>

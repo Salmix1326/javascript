@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 4</span>. Наперед задано у скрипті масив зі списком бажань.
+      Після завантаження сторінки випадковим чином вибираються 3 і
+      відображаються у окремих div (їх треба створити і додати на сторінку)
+    </h2>
+    <div id="container"></div>
+    <script>
+      window.onload = function () {
+        let cnt = document.getElementById("container");
+        let wishesList = ["Любви", "Здоровья", "Счастья", "Мира", "Cвободы"];
+        let div1 = document.createElement("div");
+        div1.append(
+          wishesList[Math.floor(Math.random() * wishesList.length - 1) + 1]
+        );
+        console.log(div1);
+
+        let div2 = document.createElement("div");
+        div2.append(
+          wishesList[Math.floor(Math.random() * wishesList.length - 1) + 1]
+        );
+        let div3 = document.createElement("div");
+        div3.append(
+          wishesList[Math.floor(Math.random() * wishesList.length - 1) + 1]
+        );
+        cnt.append(div1);
+        cnt.append(div2);
+        cnt.append(div3);
+      };
+    </script>
+  </body>
+</html>

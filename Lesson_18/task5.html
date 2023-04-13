@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 5</span>. Відобразити таблицю 3*4 з випадковими числами (її
+      треба динамічно створити і вставити на сторінку)
+    </h2>
+    <div id="container"></div>
+    <script>
+      let table = document.createElement("table");
+      table.style.border = "2px";
+      table.style.borderStyle = "solid";
+      table.style.borderColor = "black";
+      for (let i = 0; i < 4; i++) {
+        let tr = document.createElement("tr");
+        table.append(tr);
+        for (let j = 0; j < 3; j++) {
+          let th = document.createElement("th");
+          th.innerText = `${Math.floor(Math.random() * 50) + 1}`;
+          th.style.border = "2px";
+          th.style.borderStyle = "solid";
+          th.style.borderColor = "black";
+          tr.append(th);
+        }
+      }
+      let cnt = document.getElementById("container");
+      cnt.append(table);
+    </script>
+  </body>
+</html>

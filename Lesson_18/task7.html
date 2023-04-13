@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №7</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 7</span>. Подорож складається з 3 етапів. На кожному етапі
+      користувач може вибрати один з видів транспорту (авто, автобус, літак -
+      випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та
+      одного з 3-х гідів(використати - radio buttons). Ціни визначте самі.
+      Підрахувати загальну вартість.
+    </h2>
+    <label>
+      Чем желаете путишествовать ?
+      <select name="" id="select">
+        <option value="1000">Авто</option>
+        <option value="1500">Автобус</option>
+        <option value="3000">Самолет</option>
+      </select>
+    </label>
+    <h2>Что из питания желаете включить в рацион ?</h2>
+    <label for="eat1">Завтрак</label>
+    <input id="eat1" type="checkbox" name="eat" value="1500" />
+    <label for="eat2">Обед</label>
+    <input id="eat2" type="checkbox" name="eat" value="1700" />
+    <label for="eat3">Ужин</label>
+    <input id="eat3" type="checkbox" name="eat" value="1800" />
+    <h2>Какого гида предпочитаете ?</h2>
+    <label for="guide1">John Week</label>
+    <input id="guide1" type="radio" name="guide" value="1500" />
+    <label for="guide2">Dwayne Johnson</label>
+    <input id="guide2" type="radio" name="guide" value="2500" />
+    <label for="guide3">Gal Gadot</label>
+    <input id="guide3" type="radio" name="guide" value="4500" />
+    <button onclick="getPrice()">Рассчитать стоимость</button>
+    <div id="res"></div>
+    <script>
+      function getPrice() {
+        let checkedSelect = document.querySelectorAll("option");
+        let checkedInput = document.querySelectorAll("input");
+        console.log(checkedInput);
+        console.log(checkedSelect);
+
+        let sum = 0;
+        checkedSelect.forEach((element) => {
+          if (element.selected) {
+            sum += parseInt(element.value);
+          }
+        });
+        checkedInput.forEach((element) => {
+          if (element.checked) {
+            sum += parseInt(element.value);
+          }
+        });
+        document.getElementById(
+          "res"
+        ).innerText = `Стоимость вашего путишествия : ${sum} грн`;
+      }
+    </script>
+  </body>
+</html>

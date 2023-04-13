@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 2</span>. Зробити конвертер валют (курси валют – константи у
+      скрипті)
+    </h2>
+
+    <label>
+      Сумма в гривнах
+      <input id="sumgrn" type="number" />
+    </label>
+    <button onclick="convert()">Конвертировать</button>
+    <label>
+      Сумма в евро
+      <input id="sumeuro" type="number" />
+    </label>
+    <label>
+      Сумма в долларах
+      <input id="sumdol" type="number" />
+    </label>
+    <script>
+      function convert() {
+        let sumGRN = parseFloat(document.getElementById("sumgrn").value);
+        let euro = sumGRN / 40;
+        let dollar = sumGRN / 36;
+        document.getElementById("sumeuro").value = euro;
+        document.getElementById("sumdol").value = dollar;
+      }
+    </script>
+  </body>
+</html>

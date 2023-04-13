@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №3</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2>
+      <span>Задача 3</span>. Користувач задає рік народження. Визначити
+      кількість років користувача.
+    </h2>
+    <label>
+      Ваш год Рождения
+      <input id="useryear" type="number" />
+    </label>
+    <button onclick="age()">Посчитать возраст</button>
+    <div id="container"></div>
+    <script>
+      function age() {
+        let userYear = parseFloat(document.getElementById("useryear").value);
+        let cnt = document.getElementById("container");
+        let userAge = new Date().getFullYear() - userYear;
+        console.log(userAge);
+        cnt.innerText = ` Ваш возраст: ${userAge}`;
+      }
+    </script>
+  </body>
+</html>
