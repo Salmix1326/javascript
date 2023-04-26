@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <style>
+      body {
+        background: url("img/bg.jpg");
+      }
+      h2 {
+        color: blue;
+      }
+    </style>
+    <h2>
+      <span>Задача 4</span>. Сяючі зорі. Вказана кількість зірочок повинна
+      з’являтися у випадковій частині екрану. Кожна зірка з певним кроком і
+      інтервалом збільшується від мінімального до максимального розміру. Як
+      тільки досягнути максимального розміру зірочка повинна з’являтися у іншій
+      випадковій позиції.
+    </h2>
+    <div id="container"></div>
+    <script>
+      class Star {
+        constructor() {}
+
+        getRandomValue(min, max) {
+          return min + Math.floor(Math.random() * max - min);
+        }
+
+        createStar(containerId) {
+          this.starContainer = document.createElement("div");
+          this.starContainer.className = "star";
+          this.starContainer.style.position = "absolute";
+          this.starContainer.style.left =
+            this.getRandomValue(0, window.innerWidth - 100) + "px";
+          this.starContainer.style.top =
+            this.getRandomValue(0, window.innerHeight - 100) + "px";
+          this.starImg = document.createElement("img");
+          this.starImg.src = "img/star.png";
+          this.starImg.width = 0;
+          this.starContainer.append(this.starImg);
+
+          this.targetContainer = document.getElementById(containerId);
+          this.targetContainer.append(this.starContainer);
+          this.animateStar(containerId);
+        }
+
+        animateStar(containerId) {
+          setInterval(() => {
+            this.starImg.width =
+              this.starImg.width + this.getRandomValue(1, 25);
+            if (parseInt(this.starImg.width) > this.getRandomValue(50, 150)) {
+              this.targetContainer.removeChild(this.starContainer);
+              const lastChild = this.targetContainer.lastElementChild;
+              console.log(lastChild);
+              this.createStar(containerId);
+            }
+          }, this.getRandomValue(2, 12) * 1000);
+        }
+      }
+
+      for (let i = 0; i < 10; i++) {
+        new Star().createStar("container");
+      }
+    </script>
+  </body>
+</html>

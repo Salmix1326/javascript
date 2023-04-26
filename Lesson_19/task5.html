@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <style></style>
+    <h2>
+      <span>Задача 5</span>. Байрактар. З верхньої частини екрану у випадковій
+      позиції по горизонталі з’являються танки, які їдуть вниз. При кліку на
+      танк він вибухає і зникає з екрану.
+    </h2>
+    <div class="counter"></div>
+    <div id="main-container"></div>
+    <script>
+      let tankSet = [
+        {
+          image: "img/tank01.png",
+          speed: 2,
+        },
+        {
+          image: "img/tank02.jpg",
+          speed: 3,
+        },
+        {
+          image: "img/tank03.jpg",
+          speed: 4,
+        },
+      ];
+
+      class Tank {
+        static counterOfDeadTanks = 0;
+        constructor({ image, speed }) {
+          this.image = image;
+          this.speed = speed;
+        }
+
+        getRandomValue(min, max) {
+          return min + Math.floor(Math.random() * max - min);
+        }
+
+        deleteTank(tank) {
+          tank.style.top = 0 + "px";
+          tank.style.left =
+            this.getRandomValue(0, window.outerWidth - parseInt(tank.width)) +
+            "px";
+        }
+
+        animateTank(tank) {
+          tank.onclick = () => {
+            this.deleteTank(tank);
+            Tank.counterOfDeadTanks++;
+            let counter = document.querySelector(".counter")
+            counter.innerHTML = `Танков убито: ${Tank.counterOfDeadTanks}`
+            console.log(Tank.counterOfDeadTanks);
+          };
+          setInterval(() => {
+            tank.style.top = parseInt(tank.style.top) + 20 * this.speed + "px";
+            console.log(tank.style.top);
+            if (
+              parseInt(tank.style.top) + parseInt(tank.width) >
+              window.innerHeight
+            ) {
+              this.deleteTank(tank);
+            }
+          }, 1000);
+        }
+
+        createSnowFlake(containerId) {
+          const tankContainer = document.createElement("div");
+          tankContainer.className = "tank";
+          tankContainer.style.position = "absolute";
+          tankContainer.style.top = "0" + "px";
+
+          const tankImage = document.createElement("img");
+          tankImage.src = this.image;
+          tankImage.width = "100";
+
+          tankContainer.height = tankImage.width;
+          tankContainer.width = tankImage.width;
+          tankContainer.style.left =
+            `${this.getRandomValue(
+              0,
+              window.outerWidth - parseInt(tankContainer.width)
+            )}` + "px";
+          tankContainer.append(tankImage);
+          console.log(tankContainer.style.left);
+          const targetContainer = document.getElementById(containerId);
+          targetContainer.append(tankContainer);
+          this.animateTank(tankContainer);
+        }
+      }
+
+      for (let i = 0; i < 3; i++) {
+        let tank = new Tank(
+          tankSet[Math.floor(Math.random() * tankSet.length)]
+        );
+        tank.createSnowFlake("main-container");
+      }
+    </script>
+  </body>
+</html>

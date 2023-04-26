@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №3</title>
+  </head>
+
+  <body>
+    <style>
+    </style>
+    <h2>
+      <span>Задача 3</span>. Відобразити падаючий сніг. Сніжинка з’являється у
+      верхній частині екрану і з випадковою швидкістю рухається вниз. Як тільки
+      сніжинка досягає нижньої частини екрану вона знову повинна з’явитись у
+      верхній частині екрану.
+    </h2>
+    <div id="main-container"></div>
+    <script>
+      let snowflakesSet = [
+        {
+          image: "img/snow01.png",
+          speed: 2,
+        },
+        {
+          image: "img/snow02.png",
+          speed: 3,
+        },
+        {
+          image: "img/snow03.png",
+          speed: 4,
+        },
+      ];
+
+      class SnowFlake {
+        constructor({ image, speed }) {
+          this.image = image;
+          this.speed = speed;
+        }
+
+        getRandomValue(min, max) {
+          return min + Math.floor(Math.random() * max - min);
+        }
+
+        deleteSnowFlake(snowFlake) {
+          snowFlake.style.top = 0 + "px";
+          snowFlake.style.left =
+            this.getRandomValue(
+              0,
+              window.outerWidth - parseInt(snowFlake.width)
+            ) + "px";
+        }
+
+        animateSnowflake(snowFlake) {
+          setInterval(() => {
+            snowFlake.style.top =
+              parseInt(snowFlake.style.top) + 40 * this.speed + "px";
+            console.log(snowFlake.style.top);
+            if (
+              parseInt(snowFlake.style.top) + parseInt(snowFlake.width) >
+              window.innerHeight
+            ) {
+              this.deleteSnowFlake(snowFlake);
+            }
+          }, 1000);
+        }
+
+        createSnowFlake(containerId) {
+          const snowContainer = document.createElement("div");
+          snowContainer.className = "snowflake";
+          snowContainer.style.position = "absolute";
+          snowContainer.style.top = "0" + "px";
+
+          const snowImage = document.createElement("img");
+          snowImage.src = this.image;
+          snowImage.width = "100";
+
+          snowContainer.height = snowImage.width;
+          snowContainer.width = snowImage.width;
+          snowContainer.style.left =
+            `${this.getRandomValue(
+              0,
+              window.outerWidth - parseInt(snowContainer.width)
+            )}` + "px";
+          snowContainer.append(snowImage);
+          console.log(snowContainer.style.left);
+          const targetContainer = document.getElementById(containerId);
+          targetContainer.append(snowContainer);
+          this.animateSnowflake(snowContainer);
+        }
+      }
+
+      for (let i = 0; i < 10; i++) {
+        let snowflake = new SnowFlake(
+          snowflakesSet[Math.floor(Math.random() * snowflakesSet.length)]
+        );
+        snowflake.createSnowFlake("main-container");
+      }
+    </script>
+  </body>
+</html>

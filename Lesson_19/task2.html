@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+
+  <body>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      h2{
+        margin-bottom: 10px;
+      }
+      h3{
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      #container {
+        display: flex;
+        gap: 20px;
+        margin-left: 10px;
+      }
+      .first-list,
+      .second-list {
+        display: inline-block;
+        border: 1px solid black;
+        padding: 5px;
+        min-height: 100px;
+        min-width: 150px;
+      }
+      .sportsman-card {
+        display: flex;
+        gap: 20px;
+        border: 1px solid black;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+      .image img {
+        width: 30px;
+      }
+    </style>
+    <h2>
+      <span>Задача 2</span>. Дано список спортсменів. Потрібно сформувати список
+      тих, які будуть брати участь у змаганні. При цьому є два стовпці. В одному
+      відображені всі спортсмени, в іншому – список тих, хто був вибраний. При
+      натисканні на зелену стрілку спортсмен переміщається у список для змагань.
+      При натисканні на червону стрілку спортсмен переміщається у загальний
+      список.
+    </h2>
+    <div id="container"></div>
+    <script>
+      let athletes = [
+        {
+          name: "John Week",
+          arrow: "img/arrow.png",
+        },
+        {
+          name: "Gal Gadot",
+          arrow: "img/arrow.png",
+        },
+        {
+          name: "Сусiд Iван",
+          arrow: "img/arrow.png",
+        },
+        {
+          name: "Ilon Mask",
+          arrow: "img/arrow.png",
+        },
+        {
+          name: "Dwayne Johnson",
+          arrow: "img/arrow.png",
+        },
+        {
+          name: "Katty Perry",
+          arrow: "img/arrow.png",
+        },
+        {
+          name: "Usain Bolt",
+          arrow: "img/arrow.png",
+        },
+      ];
+
+      let readyAthletes = [];
+
+      class sportsmanCard {
+        constructor({ name, arrow }) {
+          this.name = name;
+          this.arrow = arrow;
+        }
+
+        removeFromReadyAthletes() {
+          const list1 = document.getElementById("firstList");
+          this.image.src = "img/arrow.png";
+          list1.append(this.cardContainer);
+          this.cardContainer.onclick = this.addToReadyAthletes.bind(this);
+        }
+
+        addToReadyAthletes() {
+          const list2 = document.getElementById("secondList");
+          this.image.src = "img/arrow2.png";
+          list2.append(this.cardContainer);
+          this.cardContainer.onclick = this.removeFromReadyAthletes.bind(this);
+        }
+
+        render(containerId) {
+          this.cardContainer = document.createElement("div");
+          this.cardContainer.className = "sportsman-card";
+          this.cardContainer.onclick = this.addToReadyAthletes.bind(this);
+          const name = document.createElement("span");
+          name.innerText = this.name;
+          this.cardContainer.append(name);
+
+          const imageContainer = document.createElement("div");
+          imageContainer.className = "image";
+          this.image = document.createElement("img");
+          this.image.src = this.arrow;
+          imageContainer.append(this.image);
+          this.cardContainer.append(imageContainer);
+
+          const targetContainer = document
+            .getElementById(containerId)
+            .append(this.cardContainer);
+        }
+      }
+
+      class sportManager {
+        constructor(dataList) {
+          this.sportsmanList = dataList;
+        }
+
+        render(containerId) {
+          const firstList = document.createElement("div");
+          const label1 = document.createElement("h3");
+          label1.innerText = "Общий список";
+          firstList.id = "firstList";
+          firstList.className = "first-list";
+          firstList.append(label1);
+
+          const secondList = document.createElement("div");
+           const label2 = document.createElement("h3");
+          label2.innerText = "Выбранные спортсмены";
+          secondList.id = "secondList";
+          secondList.className = "second-list";
+          secondList.append(label2);
+
+          const targetContainer = document.getElementById(containerId);
+          targetContainer.append(firstList);
+          targetContainer.append(secondList);
+        }
+      }
+
+      new sportManager().render("container");
+
+      for (let i = 0; i < athletes.length; i++) {
+        new sportsmanCard(athletes[i]).render("firstList");
+      }
+    </script>
+  </body>
+</html>

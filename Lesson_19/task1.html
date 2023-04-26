@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      h2 {
+        margin-bottom: 10px;
+        margin-left: 10px;
+      }
+      a {
+        text-decoration: 0;
+        display: flex;
+      }
+      #container {
+        display: flex;
+        gap: 20px;
+        margin-left: 10px;
+        min-height: 100%;
+      }
+      .card-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border: 1px solid black;
+        width: 150px;
+        padding: 10px;
+      }
+      .img-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .img-container img {
+        width: 100px;
+        height: 100px;
+      }
+      .type-container {
+        background-color: orange;
+        border-radius: 20px;
+        padding: 5px 10px;
+        color: white;
+      }
+      .text-container {
+        flex-grow: 1;
+      }
+      .price {
+        color: red;
+        font-size: 20px;
+      }
+      .active {
+        border: 2px solid green;
+      }
+    </style>
+    <h2 class="main-block_upper-title">
+      <span>Задача 1</span> Відображаємо картки товарів, які користувач може
+      вибирати. Вибраний товар має зелену рамку
+    </h2>
+    <div id="container"></div>
+    <script>
+      dataSet = [
+        {
+          type: "Топ Продаж",
+          img: "img/img01.jpg",
+          text: "Дорогой ноубук",
+          price: 30.999,
+        },
+        {
+          type: "Топ Продаж",
+          img: "img/img02.jpg",
+          text: "Не очень дорогой ноубук",
+          price: 19.999,
+        },
+        {
+          type: "Акция",
+          img: "img/img03.jpg",
+          text: "Лучший выбор",
+          price: 13.999,
+        },
+        {
+          type: "Топ продаж",
+          img: "img/img04.jpg",
+          text: "Здесь и говорить не стоит, цена жесть",
+          price: 39.999,
+        },
+      ];
+
+      class LinkCard {
+        constructor({ type, img, text, price }) {
+          this.cardType = type;
+          this.imgSrc = img;
+          this.cardText = text;
+          this.cardPrice = price;
+        }
+
+        render(containerId) {
+          const link = document.createElement("a");
+          link.href = "#";
+          const cardContainer = document.createElement("div");
+          cardContainer.className = "card-container";
+          const type = document.createElement("span");
+          type.classList = "type-container";
+
+          if (this.cardType === "Акция")
+            type.style.backgroundColor = "rgb(216, 213, 34)";
+
+          type.innerText = this.cardType;
+          cardContainer.append(type);
+
+          const imgContainer = document.createElement("div");
+          imgContainer.className = "img-container";
+          const img = document.createElement("img");
+          img.src = this.imgSrc;
+          imgContainer.append(img);
+          cardContainer.append(imgContainer);
+
+          const textContainer = document.createElement("p");
+          textContainer.className = "text-container";
+          textContainer.innerText = this.cardText;
+          cardContainer.append(textContainer);
+
+          const priceContainer = document.createElement("p");
+          priceContainer.className = "price";
+          priceContainer.innerText = this.cardPrice + " грн";
+          cardContainer.append(priceContainer);
+          link.append(cardContainer);
+          const targetContainer = document
+            .getElementById(containerId)
+            .append(link);
+        }
+      }
+
+      class cardData {
+        constructor(dataSet) {
+          this.data = dataSet;
+        }
+
+        newCard() {
+          for (let i = 0; i < this.data.length; i++) {
+            let card = new LinkCard(this.data[i]).render("container");
+          }
+          this.cards = document.querySelectorAll("a");
+        }
+
+        setActiveCard() {
+          for (const card of this.cards) {
+            card.onclick = () => {
+              for (const card of this.cards) {
+                card.classList.remove("active");
+              }
+              card.classList.add("active");
+            };
+          }
+        }
+      }
+
+      let cardSet = new cardData(dataSet);
+      cardSet.newCard();
+      cardSet.setActiveCard();
+    </script>
+  </body>
+</html>
