@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №3</title>
+  </head>
+
+  <body>
+    <h2>
+      <span>Задача 3</span>. Сформувати масив з 1000 елементів від 1 до 800.
+      Порівняти час сортування бульбашкою і вставкою.
+    </h2>
+
+    <script>
+      function getRandomNum(min, max) {
+        return min + Math.floor(Math.random() * max - min + 1);
+      }
+
+      let someArr = [];
+
+      for (let i = 0; i < 1000; i++) {
+        someArr.push(getRandomNum(1, 800));
+      }
+      console.log(someArr);
+
+      let currentDate1 = Date.now();
+      console.log(currentDate1);
+
+      // Сортировка пузырьком
+      do {
+        changes = false;
+        for (let i = 0; i < someArr.length - 1; i++) {
+          if (someArr[i] > someArr[i + 1]) {
+            let tmp = someArr[i];
+            someArr[i] = someArr[i + 1];
+            someArr[i + 1] = tmp;
+            changes = true;
+          }
+        }
+      } while (changes);
+
+      let currentDate2 = Date.now();
+      console.log(currentDate2);
+      let timeOfSort = new Date(currentDate2 - currentDate1);
+      console.log(timeOfSort.getMilliseconds());
+
+      document.write(`Время сортировки пузырьком: ${timeOfSort.getMilliseconds()} миллисекунд`);
+
+      currentDate1 = Date.now()
+      // Сортировка вставкой
+      // let key, i;
+      // for (let k = 1; k < someArr.length; k++) {
+      //   key = someArr[k];
+      //   i = k - 1;
+      //   while (i >= 0 && someArr[i] > key) {
+      //     someArr[i + 1] = someArr[i];
+      //     i--;
+      //   }
+      //   someArr[i + 1] = key;
+      // }
+      currentDate2 = Date.now()
+      timeOfSort = new Date(currentDate2 - currentDate1);
+      document.write(`Время сортировки вставкой: ${timeOfSort.getMilliseconds()} миллисекунд`);
+      console.log(someArr);
+      // Пузырек сортирует 5-8 миллисекунд, вставка - 3-5 миллисекунд
+    </script>
+  </body>
+</html>

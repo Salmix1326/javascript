@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <h2>
+      <span>Задача 4</span>. Задаємо користувачу задачу з додавання двох чисел.
+      Визначити скільки секунд було використано для розв’язання задачі.
+    </h2>
+    <script>
+      function getRandomNum(min, max) {
+        return min + Math.floor(Math.random() * max - min + 1);
+      }
+      const num1 = getRandomNum(1, 10);
+      const num2 = getRandomNum(1, 10);
+      let currentDate1 = Date.now();
+      let userAnswer = parseInt(prompt(`Сколько будет: ${num1} + ${num2} ?`));
+      let currentDate2 = Date.now();
+      let timeOfEx = new Date(currentDate2 - currentDate1);
+      const trueAnswer = num1 + num2;
+      if (userAnswer === trueAnswer) {
+        alert("Правильно!");
+      } else alert("Неправильно");
+
+      alert(`Время решения задачи : ${timeOfEx.getSeconds()} секунд`);
+    </script>
+  </body>
+</html>

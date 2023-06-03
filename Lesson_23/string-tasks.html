@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задачи №1-17</title>
+  </head>
+
+  <body>
+    <script>
+      // 1. Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та регулярні вирази).
+      // let array = [
+      //   "Lorem ipsum",
+      //   "dolor sit 34 amet",
+      //   "consectetur adipisicing",
+      //   "elit. 6790 Commodi, eum?",
+      // ];
+
+      // let newArray = [];
+      // for (const string of array) {
+      //   if (/\d/.test(string)) newArray.push(string);
+      // }
+
+      // document.write(newArray.join("<br>"));
+
+      // ======================================================================================================================
+
+      // // Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.
+
+      // let array = [
+      //   "Lorem ipsum",
+      //   "dolor sit 34 amet",
+      //   "consectetur adipisicing",
+      //   "elit. 6790 Commodi, eum?",
+      // ];
+
+      // let newArray = [];
+      // for (const string of array) {
+      //   if (/^\D*$/.test(string)) newArray.push(string);
+      // }
+
+      // document.write(newArray.join("<br>"));
+
+      // ======================================================================================================================
+
+      // Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.
+
+      // let array = [
+      //   "Lorem ipsum",
+      //   "dlr st 34 mt",
+      //   "consectetur adipisicing",
+      //   "lt. 6790 Cmmd, m?",
+      // ];
+
+      // let newArray = [];
+      // for (const string of array) {
+      //   if (/[aeiouy]/.test(string)) newArray.push(string);
+      // }
+
+      // document.write(newArray.join("<br>"));
+
+      // ======================================================================================================================
+
+      // Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.
+
+      // let array = [
+      //   "Lorem ipsum",
+      //   "dlr st 34 mt",
+      //   "consectetur adipisicing",
+      //   "lt. 6790 Cmmd, m?",
+      // ];
+
+      // let newArray = [];
+      // for (const string of array) {
+      //   if (/^[^aeiouy]*$/.test(string)) newArray.push(string);
+      // }
+
+      // document.write(newArray.join("<br>"));
+
+      // ======================================================================================================================
+
+      // Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра 3.
+
+      // let array = [
+      //   "Lorem ipsum",
+      //   "dlr st 34 mt",
+      //   "consectetur adipisicing",
+      //   "lt. 6790 Cmmd, m?",
+      // ];
+
+      // let newArray = [];
+      // for (const string of array) {
+      //   if (/[1]|[3]/.test(string)) newArray.push(string);
+      // }
+
+      // document.write(newArray.join("<br>"));
+
+      // ======================================================================================================================
+
+      // Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.
+
+      // let string = "Lorem 23 ipsum 15 quis corrupti corporis ut 1 expedita magnam.";
+
+      // document.write(string.match(/\d/g))
+
+      // ======================================================================================================================
+
+      // Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були використано.
+
+      // let string =
+      //   "Lorem 23 ipsum 15 quis corrupti corporis, ut 1 expedita: magnam.";
+
+      // document.write(string.match(/\W/g));
+
+      // ======================================================================================================================
+
+      // Задача 8. Дано рядок тексту. Вивести усі складові, які розділені розділовими знаками.
+
+      // let string =
+      //   "Lorem 23; ipsum 15 quis - corrupti corporis, ut 1 expedita: magnam.";
+
+      // console.log(string.split(/[,:;.!?-]+/));
+
+      // ======================================================================================================================
+
+      // Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy (dd- день, mm- місяць, yyyy- рік).
+
+      // let string =
+      //   "Lorem 23; ipsum 15 quis - corrupti corporis, 13.03.2020 ut 1 expedita: magnam.";
+      // let pattern = /\d{2}\.\d{2}\.\d+\s/;
+
+      // if (pattern.test(string))
+      //   alert(`Да, в этом выражении есть дата: ${pattern.exec(string)}`);
+      // else alert("Нет, в этом выражении нет даты");
+
+      // ======================================================================================================================
+
+      // Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.
+
+      // let string =
+      //   "Lorem 23; ipsum 15 quis - 4 corrupti corporis, 48 ut 1 expedita: 2 magnam.";
+      // counterOfDoubleDig = string.match(/\d{2}/g).length;
+
+      // alert(`В этом выражении ${counterOfDoubleDig} двухзначных чисел`)
+
+      // ======================================================================================================================
+
+      // Задача 11. Визначити чи може бути рядок тексту номером банківської картки (приклад: «4142-3433-2323-3434»). Знайти усі такі номери.
+
+      // let string =
+      //   "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae, 4142-3433-2323-3434 nesciunt esse repellat aperiam sit amet necessitatibus ut nostrum 4141-3463-4423-28434 temporibus molestias error cupiditate unde, quo delectus eveniet explicabo dolorem odit porro dignissimos quisquam 6789-2863-4153-45434 tenetur natus! Officia eos fugiat reprehenderit ex porro aut sint ullam, architecto quia saepe, placeat, facilis laboriosam dolorem! 4142-3433-2323-3413";
+
+      // console.log(string.match(/\d{4}-\d{4}-\d{4}-\d{4}/g));
+
+      // ======================================================================================================================
+
+      // Задача 12. Дано адресу сайту. Визначити, чи є він урядовим (містить домен “gov”)
+
+      // let string =
+      //   "www.president.gov.ua";
+      // let pattern = /.gov/;
+
+      // if (pattern.test(string))
+      //   alert(`Это государственный сайт`);
+      // else alert("Это не государственный сайт");
+
+      // ======================================================================================================================
+
+      // Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення
+
+      // let string =
+      //   "Lorem ipsum dolor, sit 2125 amet consectetur adipisicing elit. Recusandae, 2008 nesciunt esse repellat aperiam sit amet necessitatibus ut nostrum 2005 temporibus molestias error cupiditate unde, quo delectus eveniet explicabo dolorem odit porro dignissimos quisquam 2021 tenetur natus! Officia eos fugiat reprehenderit ex porro aut sint ullam, architecto quia saepe, placeat, facilis laboriosam dolorem! 2022,2023";
+
+      // let yearsArray = string.match(/\d{4}/g);
+
+      // let newArray = [];
+
+      // for (const year of yearsArray) {
+      //   if (year > 2021) newArray.push(year);
+      // }
+
+      // console.log(newArray);
+
+      // ======================================================================================================================
+
+      // Задача 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на «+38»)
+
+      // let string = "+38-000-000-00-00";
+
+      // let pattern = /\+38-\d{3}-\d{3}-\d{2}-\d{2}/;
+
+      // if (pattern.test(string)) alert(`Это номер Украины`);
+      // else alert("Это не номер Украины");
+
+      // ======================================================================================================================
+
+      // Задача 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл.  Замінити пробіл на дефіс.
+
+      // let userData = prompt("Введите имя и фамилию через пробел");
+      // let stringArray = userData.match(/\w+/g);
+
+      // let checkData = changeString`${stringArray[0]} ${stringArray[1]}`;
+
+      // function changeString(parts, userFirstName, userLastName) {
+      //   return userFirstName + "-" + userLastName;
+      // }
+
+      // console.log(checkData);
+
+      // ======================================================================================================================
+
+      // Задача 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати у форматі «день/місяць/рік»
+
+      // let userDate = prompt("Введите дату в формате dd.mm.yyyy");
+      // let stringArray = userDate.match(/\d+/g);
+
+      // let checkDate = changeString`${stringArray[0]} ${stringArray[1]} ${stringArray[2]}`
+
+      // function changeString(parts, dateDays, dateMonth,dateYear) {
+      //   return dateDays + "/" + dateMonth + "/" + dateYear;
+      // }
+
+      // console.log(checkDate);
+
+      // ======================================================================================================================
+
+      // Задача 17. Користувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи  є це день вихідним
+
+      // let userDate = prompt("Введите номер или название дня");
+
+      // if (/(0|6|sunday|saturday)/.test(userDate)) alert("Это выходной");
+      // else alert("Это рабочий день");
+    </script>
+  </body>
+</html>
