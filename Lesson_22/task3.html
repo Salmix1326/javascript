@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №3</title>
+  </head>
+
+  <body>
+    <h2>
+      <span>Задача 3</span>. Користувач задає місяць навчання учня (перевіряти
+      чи є числом, чи від 1 до 12, чи не канікули) та оцінку (перевіряти чи є
+      числом, чи від 1 до 100). Вивести чи зможе він виправити оцінку (якщо
+      оцінка погана і це не останній місяць у семестрі) . Обробку усіх помилок
+      зробити з використанням відповідних класів.
+    </h2>
+
+    <script>
+      class IsNotNumberError extends Error {
+        constructor() {
+          super();
+          this.message = "Номер должен быть числом";
+          this.name = "IsNotNumberError";
+        }
+      }
+
+      class IsLowThan1NumberError extends Error {
+        constructor() {
+          super();
+          this.message = "Номер должен быть не меньше 1";
+          this.name = "IsLowThan1NumberError";
+        }
+      }
+
+      class IsGreaterThen12NumberError extends Error {
+        constructor() {
+          super();
+          this.message = "Номер должен быть не больше 12";
+          this.name = "IsGreaterThen12NumberError";
+        }
+      }
+
+      class IsHolidayNumberError extends Error {
+        constructor() {
+          super();
+          this.message = "Введенный номер месяца - это каникулы";
+          this.name = "IsHolidayNumberError";
+        }
+      }
+
+      class IsGradeaNumber extends Error {
+        constructor() {
+          super();
+          this.message = "Оценка должна быть числом";
+          this.name = "IsGreaterThen100NumberError";
+        }
+      }
+
+      class IsGradeLowThen1Error extends Error {
+        constructor() {
+          super();
+          this.message = "Оценка должна быть не меньше 1";
+          this.name = "IsGreaterThen100NumberError";
+        }
+      }
+
+      class IsGradeGreaterThen100Error extends Error {
+        constructor() {
+          super();
+          this.message = "Оценка должна быть не больше 100";
+          this.name = "IsGreaterThen100NumberError";
+        }
+      }
+
+      class NotSuccess extends Error {
+        constructor() {
+          super();
+          this.message = "Вы не сможете улучшить оценку";
+          this.name = "IsGreaterThen100NumberError";
+        }
+      }
+
+      class SuccessCanBe extends Error {
+        constructor() {
+          super();
+          this.message = "Вы сможете улучшить оценку";
+          this.name = "IsGreaterThen100NumberError";
+        }
+      }
+
+      class Success extends Error {
+        constructor() {
+          super();
+          this.message = "Вы успешны!";
+          this.name = "IsGreaterThen100NumberError";
+        }
+      }
+
+      let userMonth = parseInt(prompt("Введите номер месяца"));
+      if (validate(userMonth)) {
+        let userGrade = parseInt(prompt("Введите оценку"));
+        validateGrade(userGrade);
+        validateSuccess(userMonth,userGrade)
+      }
+
+      function validate(userMonth) {
+        try {
+          if (isNaN(userMonth)) throw new IsNotNumberError();
+          else if (userMonth < 1) throw new IsLowThan1NumberError();
+          else if (userMonth > 12) throw new IsGreaterThen12NumberError();
+          else if (userMonth >= 10) throw new IsHolidayNumberError();
+        } catch (err) {
+          if (err instanceof IsNotNumberError) {
+            document.write(err.message);
+          } else if (err instanceof IsLowThan1NumberError) {
+            document.write(err.message);
+          } else if (err instanceof IsGreaterThen12NumberError) {
+            document.write(err.message);
+          } else if (err instanceof IsHolidayNumberError) {
+            document.write(err.message);
+          }
+          return false;
+        }
+        return true;
+      }
+
+      function validateGrade(userGrade) {
+        try {
+          if (isNaN(userGrade)) throw new IsGradeaNumber();
+          else if (userGrade < 1) throw new IsGradeLowThen1Error();
+          else if (userGrade > 100) throw new IsGradeGreaterThen100Error();
+        } catch (err) {
+          if (err instanceof IsGradeaNumber) {
+            document.write(err.message);
+          } else if (err instanceof IsGradeLowThen1Error) {
+            document.write(err.message);
+          } else if (err instanceof IsGradeGreaterThen100Error) {
+            document.write(err.message);
+          }
+          return false;
+        }
+        return true;
+      }
+
+      function validateSuccess(userMonth, userGrade) {
+        try {
+          if (userGrade < 80 && userMonth >= 9) throw new NotSuccess();
+          else if (userGrade < 80 && userMonth < 9) throw new SuccessCanBe();
+          else if (userGrade >= 80 && userMonth < 9) throw new Success();
+        } catch (err) {
+          if (err instanceof NotSuccess) {
+            document.write(err.message);
+          } else if (err instanceof SuccessCanBe) {
+            document.write(err.message);
+          } else if (err instanceof Success) {
+            document.write(err.message);
+          }
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+    </style>
+    <h2 class="main-block_upper-title">
+      <span>Задача 1. Створити клас Client</span>
+      <img src="img/taskimg01.png" alt="" />
+    </h2>
+    <script>
+      class Client {
+        constructor(id, name, money) {
+          this.id = id;
+          this.name = name;
+          this.money = money;
+        }
+
+        addMoney(value) {
+          this.money += value;
+        }
+
+        getMoney(value) {
+          if (this.money !== 0 && value <= this.money) this.money -= value;
+        }
+
+        toString() {
+          return `Номер счета: ${this.id} <br> Имя: ${this.name} <br> Остаток на счету: ${this.money}`;
+        }
+      }
+
+      class GoldenClient extends Client {
+        constructor(id, name, money, limitOfCredit, percentOfCredit) {
+          super(id, name, money);
+          this.limitOfCredit = limitOfCredit;
+          this.percentOfCredit = percentOfCredit;
+        }
+
+        getAmountOfPenny(sumOfDebt, daysOfDelay) {
+          return (this.penny =
+            (sumOfDebt * daysOfDelay * this.percentOfCredit) / 100);
+        }
+
+        toString() {
+          return `Номер счета: ${this.id} <br>
+          Имя: ${this.name} <br>
+          Кредитный лимит: ${this.limitOfCredit} <br>
+          Процент за использование кредитных денег: ${this.percentOfCredit} <br>
+          Остаток на счету: ${this.money}`;
+        }
+      }
+
+      let clientList = [
+        new Client(123142174, "John Week", 15000),
+        new Client(693678138, "Dwayne Johnson", 150000),
+        new Client(343142146, "Drake Superman", 10000),
+        new GoldenClient(12345352134, "Ivan Sirko", 20000, 5000, 0.1),
+        new GoldenClient(90313454354, "Samantha James", 2000, 10000, 0.4),
+        new GoldenClient(15323645476, "Arnold Swarch", 8000, 15000, 0.3),
+      ];
+
+      class Bank {
+        constructor(clientList) {
+          this.clientList = clientList;
+          this.commonClientsList = [];
+          this.goldenClientsList = [];
+          this.totalSumOfMoney = 0;
+        }
+
+        commonClients() {
+          for (const client of this.clientList) {
+            if (client instanceof Client && !(client instanceof GoldenClient)) {
+              this.commonClientsList.push(client);
+            }
+          }
+        }
+
+        goldenClients() {
+          for (const client of this.clientList) {
+            if (client instanceof GoldenClient) {
+              this.goldenClientsList.push(client);
+            }
+          }
+        }
+
+        getTotalSumOfMoney() {
+          for (const client of this.clientList) {
+            this.totalSumOfMoney += client.money;
+          }
+
+          return this.totalSumOfMoney;
+        }
+
+        toString() {
+          return `Обычные клиенты: <br> ${this.commonClientsList.join(
+            "<br><br>"
+          )} <br> <br>
+           Клиенты premium: <br> ${this.goldenClientsList.join(
+             "<br><br>"
+           )} <br> <br> Общая сумма денег в банке: ${this.totalSumOfMoney}`;
+        }
+      }
+
+      let bank = new Bank(clientList);
+      bank.commonClients();
+      bank.goldenClients();
+      bank.getTotalSumOfMoney();
+      document.write(bank);
+    </script>
+  </body>
+</html>

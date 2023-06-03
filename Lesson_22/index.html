@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Домашняя работа</title>
+  </head>
+
+  <body>
+    <style>
+      img {
+        display: block;
+      }
+    </style>
+    <div class="main-block">
+      <div class="main-block__item">
+        <h2 class="main-block_upper-title">
+          <span>Задача 1</span>. Створити клас Client
+          <img src="img/taskimg01.png" alt="" />
+        </h2>
+        <a href="task1.html">Задача №1</a>
+      </div>
+      <div class="main-block__item">
+        <h2>
+          <span>Задача 2</span>. Розробити Класи
+          <img src="img/taskimg02.png" alt="" />
+        </h2>
+        <a href="task2.html">Задача №2</a>
+      </div>
+      <div class="main-block__item">
+        <h2>
+          <span>Задача 3</span>. Користувач задає місяць навчання учня
+          (перевіряти чи є числом, чи від 1 до 12, чи не канікули) та оцінку
+          (перевіряти чи є числом, чи від 1 до 100). Вивести чи зможе він
+          виправити оцінку (якщо оцінка погана і це не останній місяць у
+          семестрі) . Обробку усіх помилок зробити з використанням відповідних
+          класів.
+        </h2>
+        <a href="task3.html">Задача №3</a>
+      </div>
+    </div>
+  </body>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      background: #505050;
+      padding: 50px;
+    }
+    .main-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .main-block__item {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    h2,
+    ol,
+    ul {
+      border: 1px solid white;
+      padding: 20px;
+      color: #bebfbd;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+    }
+    ul,
+    ol {
+      border: none;
+      padding: 0 0 0 20px;
+    }
+    li:not(:last-child) {
+      margin-bottom: 15px;
+    }
+    a {
+      font-size: 30px;
+      display: block;
+      background: #bebfbd;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+      font-size: 25px;
+      color: #505050;
+      text-decoration: none;
+      box-shadow: 0px 6px 1px 2px black;
+      transition: all 0.3s ease 0s;
+    }
+    a:hover {
+      transform: translateY(3px);
+      box-shadow: 0px 0px 5px 3px black inset;
+    }
+    span {
+      color: #ffffff;
+    }
+    img {
+      margin: 10px 0px 10px 0px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+  </style>
+</html>

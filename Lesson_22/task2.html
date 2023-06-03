@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+  <body>
+    <style>
+      span {
+        display: block;
+      }
+      #container {
+        min-width: 100%;
+        min-height: 500px;
+        position: relative;
+        background: url(../img/bg.png);
+        background-repeat: no-repeat;
+      }
+    </style>
+    <h2>
+      <span>Задача 2. Розробити Класи</span>
+      <img src="img/taskimg02.png" alt="" />
+    </h2>
+    <div id="container"></div>
+    <script>
+      class Area {
+        constructor(x, y, imageSrc, intervalOfRes) {
+          this.x = x;
+          this.y = y;
+          this.imageSrc = imageSrc;
+          this.intervalOfRes = intervalOfRes;
+        }
+
+        getRandomValue(min, max) {
+          return min + Math.floor(Math.random() * (max - min + 1));
+        }
+
+        render(containerId) {
+          const container = document.createElement("div");
+          this.imageContainer = document.createElement("div");
+          this.image = document.createElement("img");
+          this.image.src = this.imageSrc;
+          this.imageContainer.append(this.image);
+          container.append(this.imageContainer);
+          document.getElementById(containerId).append(container);
+        }
+      }
+
+      class House extends Area {
+        constructor(x, y, imageUrl, intervalOfRes) {
+          super(x, y, imageUrl, intervalOfRes);
+        }
+
+        updateMove() {
+          this.image.style.width = 200 + "px";
+          this.sizeValue = 10;
+          this.imageContainer.style.position = "absolute";
+          this.imageContainer.style.left = this.image.style.width = 200 + "px";
+          setInterval(() => {
+            this.image.style.width =
+              parseInt(this.image.style.width) + this.sizeValue + "px";
+            if (
+              parseInt(this.image.style.width) == 200 ||
+              parseInt(this.image.style.width) > 250
+            )
+              this.sizeValue = -this.sizeValue;
+          }, this.intervalOfRes * 1000);
+        }
+      }
+
+      class Dog extends Area {
+        constructor(x, y, imageUrl, intervalOfRes) {
+          super(x, y, imageUrl, intervalOfRes);
+        }
+
+        updateMove() {
+          this.image.style.width = 50 + "px";
+          this.imageContainer.style.position = "absolute";
+          this.imageContainer.style.left = this.x + "px";
+          this.imageContainer.style.top = this.y + "px";
+          setInterval(() => {
+            this.imageContainer.style.left =
+              parseInt(this.imageContainer.style.left) + this.x + "px";
+            if (
+              parseInt(this.imageContainer.style.left) < 0 ||
+              parseInt(this.imageContainer.style.left) > 200
+            )
+              this.x = -this.x;
+          }, this.intervalOfRes * 1000);
+        }
+      }
+
+      class Bird extends Area {
+        constructor(x, y, imageUrl, intervalOfRes) {
+          super(x, y, imageUrl, intervalOfRes);
+        }
+
+        updateMove() {
+          this.image.style.width = 25 + "px";
+          this.imageContainer.style.position = "absolute";
+          this.imageContainer.style.left = this.x + "px";
+          this.imageContainer.style.top = this.y + "px";
+          setInterval(() => {
+            this.imageContainer.style.left =
+              this.x + this.getRandomValue(-15, 15) + "px";
+            this.imageContainer.style.top =
+              this.y + this.getRandomValue(-15, 15) + "px";
+          }, this.intervalOfRes * 1000);
+        }
+      }
+      let area = new Area();
+      let house = new House(20, 30, "img/house.png", 2);
+      house.render("container");
+      house.updateMove();
+      let dog = new Dog(10, 120, "img/dog.png", 0.5);
+      dog.render("container");
+      dog.updateMove();
+      let bird = new Bird(500, 20, "img/bird.png", 0.5);
+      bird.render("container");
+      bird.updateMove();
+    </script>
+  </body>
+</html>
