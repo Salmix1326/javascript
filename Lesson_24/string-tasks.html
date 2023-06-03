@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задачи №1-10</title>
+  </head>
+
+  <body>
+    <input id="current-color" type="color" value="#00000" />
+    <script>
+      // =======================================================================================================================
+      // Задача  1. Дано масив рядкових представлень чисел (тобто масив чисел у лапках (string).
+      // З використанням перевірки за допомогою регулярних виразів і груп підрахувати кількість тих, у яких перша і остання літери однакові.
+
+      // let array = [
+      //   "43654537644",
+      //   "254574764",
+      //   "35457425265",
+      //   "24365346344572",
+      //   "23465435764",
+      // ];
+
+      // let counter = 0;
+
+      // array.forEach((element) => {
+      //   let firstGroup = element.match(/(\d{1})/);
+      //   let lastGroup = element.match(/(\d{1})$/);
+      //   if (firstGroup[1] === lastGroup[1]) {
+      //     counter++;
+      //   }
+      // });
+
+      // alert(
+      //   `Количество номеров с одинаковыми первой и последней цифрой: ${counter}`
+      // );
+
+      // =======================================================================================================================
+      // Задача 2. Замінити номер розділяючи послідовності цифр дефісом згідно з форматом
+      // 0504546626   🡪  +380-50-45-466-26
+
+      // function changeNum() {
+      //   return (
+      //     "+380" +
+      //     "-" +
+      //     phoneArray[1] +
+      //     "-" +
+      //     phoneArray[2] +
+      //     "-" +
+      //     phoneArray[3] +
+      //     "-" +
+      //     phoneArray[4]
+      //   );
+      // }
+
+      // let userPhoneNumber = prompt("Введите номер телефона");
+
+      // let phoneArray = userPhoneNumber.match(/^\d(\d{2})(\d{2})(\d{3})(\d{2})/);
+
+      // let chengedNum = changeNum`${phoneArray}`;
+
+      // console.log(chengedNum);
+
+      // =======================================================================================================================
+      // Задача 3. Після кожного значення року після 2000 року додати «р.»
+
+      // let string =
+      //   "Lorem ipsum dolor sit 2015 amet consectetur adipisicing elit. Ipsam 2010 est accusamus quod! Magnam blanditiis commodi 1998 eligendi nobis beatae ratione! 1996 Asperiores dignissimos 2011 numquam quam pariatur atque qui vitae ut suscipit accusantium.";
+
+      // function checkYear(match) {
+      //   if (parseInt(match) > 2000) return match + "р.";
+      //   else return match;
+      // }
+
+      // string = string.replace(/\d{4}/g, checkYear);
+
+      // console.log(string);
+      // =======================================================================================================================
+      // Задача 4. Вводиться велике число. Кожні 3 розряди відділяти пробілом.
+      // 7457896524 🡪 7 457 896 524
+
+      // let userNum = prompt("Введите число");
+
+      // let newString = userNum.replace(/(?=(\d{3})+(?!\d))/g, " ");
+
+      // console.log(newString);
+
+      // =======================================================================================================================
+      // Задача 5. Дано список з віком учнів. Підрахувати скільки разів кожне значення зустрічається у списку і максимальне.
+
+      // let ageArr = [13, 5, 11, 7, 8, 18, 16, 10, 11, 5, 18, 18, 17, 8];
+
+      // let map = new Map();
+
+      // for (const el of ageArr) {
+      //   let ageCounter = map.get(el) || 0;
+      //   map.set(el, ageCounter + 1);
+      // }
+
+      // // Максимальное из повторений
+
+      // console.log(map);
+      // let maxNum = -Infinity;
+      // for (const el of map) {
+      //   if (el[1] > maxNum) maxNum = el[1];
+      // }
+      // console.log(maxNum);
+      // =======================================================================================================================
+      // Задача 6.  Дано масив книг (назва, рік видання, автор). Підрахувати кількість книг для кожного автора.
+
+      // let booksArr = [
+      //   {
+      //     title: "The Great Gatsb",
+      //     year: 2003,
+      //     author: "Margaret Mitchell",
+      //   },
+      //   {
+      //     title: "The Grapes of Wrath",
+      //     year: 2005,
+      //     author: "Aldous Huxley",
+      //   },
+      //   {
+      //     title: "The Catcher in the Rye",
+      //     year: 2008,
+      //     author: "Margaret Mitchell",
+      //   },
+      //   {
+      //     title: "Gone with the Wind",
+      //     year: 2011,
+      //     author: "John Steinbeck",
+      //   },
+      //   {
+      //     title: "Of Mice and Men",
+      //     year: 2015,
+      //     author: "John Steinbeck",
+      //   },
+      // ];
+
+      // let map = new Map();
+
+      // for (const el of booksArr) {
+      //   let booksCounter = map.get(el.author) || 0;
+      //   map.set(el.author, booksCounter + 1);
+      // }
+
+      // console.log(map);
+      // =======================================================================================================================
+      // Задача 7. Дано інформацію про відвідувачів деякого сайту (для кожного відвідувача зберігається логін). Підрахувати для кожного клієнта кількість відвідувань.
+      // let visiteHistory = [
+      //   "John Brook",
+      //   "Margaret Mitchell",
+      //   "Harper Lee",
+      //   "John Steinbeck",
+      //   "Aldous Huxley",
+      //   "Margaret Mitchell",
+      //   "Aldous Huxley",
+      //   "Aldous Huxley",
+      //   "John Brook",
+      //   "John Steinbeck",
+      //   "Aldous Huxley",
+      //   "John Brook",
+      // ];
+
+      // let map = new Map();
+
+      // for (const name of visiteHistory) {
+      //   let countofVisit = map.get(name) || 0;
+      //   map.set(name, countofVisit + 1);
+      // }
+
+      // console.log(map);
+      // =======================================================================================================================
+      // Задача 8. Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних факультетів, та кількість студентів кожного з курсів.
+
+      // let students = [
+      //   {
+      //     name: "Margaret Mitchell",
+      //     year: 2,
+      //     faculty: "Math",
+      //   },
+      //   {
+      //     name: "Scott Fitzgerald",
+      //     year: 1,
+      //     faculty: "Ecomonics",
+      //   },
+      //   {
+      //     name: "William Faulkner",
+      //     year: 1,
+      //     faculty: "Ecomonics",
+      //   },
+      //   {
+      //     name: "Aldous Huxley",
+      //     year: 2,
+      //     faculty: "Tech",
+      //   },
+      //   {
+      //     name: "Sidney Howard",
+      //     year: 3,
+      //     faculty: "Math",
+      //   },
+      // ];
+
+      // let set = new Set();
+      // for (const student of students) {
+      //   if (!set.has(student.faculty)) set.add(student.faculty);
+      // }
+      // console.log(set.size);
+
+      // let map = new Map();
+
+      // for (const student of students) {
+      //   let countofstudents = map.get(`year ${student.year}`) || 0;
+      //   map.set(`year ${student.year}`, countofstudents + 1);
+      // }
+
+      // console.log(map);
+      // =======================================================================================================================
+      // Задача 9. Дано масив показів температур. Підрахувати кількість входжень кожного із показів
+      // let temperatures = [12.4, 24.9, 10.6, 12.4, 24.9, 12.4, 10.6, 11.9];
+      // let newTemperatures = temperatures.map((el, index) => Math.ceil(el));
+      // console.log(newTemperatures);
+
+      // let map = new Map();
+      // for (const temperature of newTemperatures) {
+      //   let countofvalues = map.get(`Температура ${temperature} градусов`) || 0;
+      //   map.set(`Температура ${temperature} градусов`, countofvalues + 1);
+      // }
+
+      // console.log(map);
+      // =======================================================================================================================
+      // Задача 10. Дано два списки прізвищ студентів, що відвідують гуртки з математики і історії.
+      // Підрахувати скільки студентів з гуртка з історії також відвідують гурток з математики.
+      // Також підрахувати скільки всього студентів відвідують хоча б один гурток.
+      // let students = [
+      //   "Dan Brown",
+      //   "J. K. Rowling",
+      //   "James Patterson",
+      //   "Jane Austen",
+      //   "Sidney Sheldon",
+      //   "Roald Dahl",
+      //   "Agatha Christie",
+      //   "William Shakespeare",
+      //   "Agatha Christie",
+      //   "Eiichiro Oda",
+      //   "Corín Tellado",
+      //   "Nora Roberts",
+      //   "James Patterson",
+      //   "Gilbert Patten",
+      //   "Osamu Tezuka",
+      //   "William Shakespeare",
+      //   "Georges Simenon",
+      // ];
+
+      // let studentMathList = [
+      //   "Dan Brown",
+      //   "J. K. Rowling",
+      //   "James Patterson",
+      //   "Jane Austen",
+      //   "Roald Dahl",
+      //   "Agatha Christie",
+      //   "William Shakespeare",
+      // ];
+
+      // let studentHistoryList = [
+      //   "Agatha Christie",
+      //   "Eiichiro Oda",
+      //   "James Patterson",
+      //   "Gilbert Patten",
+      //   "William Shakespeare",
+      //   "Georges Simenon",
+      // ];
+
+      // // Количество студентов в 2-х кружках
+      // let mathSet = new Set(studentMathList);
+      // let historySet = new Set(studentHistoryList);
+      // let counter = 0;
+      // for (const studentHistory of historySet) {
+      //   if (mathSet.has(studentHistory)) counter++;
+      // }
+      // console.log(counter);
+
+      // // Количество студентов, которые ходят хотябы в 1 кружок
+      // let studentSet = new Set(students);
+      // let counterofStudentsWhoAttend1MinClass = 0;
+      // for (const student of studentSet) {
+      //   if (mathSet.has(student) || historySet.has(student))
+      //     counterofStudentsWhoAttend1MinClass++;
+      // }
+      // console.log(counterofStudentsWhoAttend1MinClass);
+      // =======================================================================================================================
+      // Задача 11. Користувач може змінювати колір фону, що вибирає користувач з використанням
+      // <input type="color">.
+      // Зберігати цей колір і відновлювати при наступному відкритті. Також зберігати і відображати кількість змін протягом одного сеансу.
+
+      // function saveInfo() {
+      //   localStorage.setItem("color", input.value);
+      //   alert(`Произведено изменений цвета: ${++counter}`);
+      // }
+
+      // let input = document.getElementById("current-color");
+      // counter = 0;
+      // input.value = `${localStorage.getItem("color")}`;
+      // input.onchange = saveInfo;
+      // =======================================================================================================================
+      // Задача 12. Зберігати у пам’яті список справ, які користувачу треба виконати (зберігати у localStorage).
+      // Періодично випадковим чином вибирати якусь з справ і виводити користувачу (з використанням confirm).
+      // Якщо користувач натискає на «Ок», то видаляти цю задачу.
+
+      // function getRandomValue(min, max) {
+      //   return min + Math.floor(Math.random() * (max - min + 1));
+      // }
+
+      // let int = setInterval(() => {
+      //   if (localStorage.length > 0) {
+      //     let currentTaskId = localStorage.key(
+      //       getRandomValue(0, localStorage.length - 1)
+      //     );
+
+      //     let currentTaskText = localStorage.getItem(currentTaskId);
+      //     let reminder = confirm(currentTaskText);
+
+      //     if (reminder) localStorage.removeItem(currentTaskId);
+      //   } else clearInterval(int);
+      // }, 3000);
+    </script>
+  </body>
+</html>
