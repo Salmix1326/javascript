@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+  </head>
+
+  <body>
+    <h2 class="main-block_upper-title">
+      <span>Задача 4</span>. Використовуючи один з АРІ та функцію fetch
+      організувати завантаження та відображення даних
+    </h2>
+    <script>
+      fetch("https://cataas.com/cat?html=true&json=true")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          document.body.innerHTML = `File name: ${data.file}`;
+        });
+    </script>
+  </body>
+</html>

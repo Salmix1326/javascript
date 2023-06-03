@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+  </head>
+
+  <body>
+    <h2 class="main-block_upper-title">
+      <span>Задача 3</span>. Створити генератор, який би випадковим чином
+      поступово генерував вказану кількість парних чисел.
+    </h2>
+    <script>
+      function getRandomValue(min, max) {
+        return min + Math.floor(Math.random() * (max - min + 1));
+      }
+
+      function* generateNumbers() {
+        return yield getRandomValue(10, 100);
+      }
+
+      let countofNum = parseInt(prompt("Количество чисел"));
+
+      for (let i = 0; i < countofNum; i++) {
+        for (const item of generateNumbers()) {
+          console.log(item);
+        }
+      }
+    </script>
+  </body>
+</html>
