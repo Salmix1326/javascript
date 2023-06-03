@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <style>
+      table,
+      tr,
+      td {
+        border: 1px solid black;
+      }
+      #container {
+        display: flex;
+        gap: 20px;
+      }
+    </style>
+    <h2>
+      <span>Задача 4</span>. Дано 3 таблиці розмірності 3*3 з випадковими
+      числами. Якщо відбувається клік на якійсь із клітинок, то до відповідної
+      таблиці додається червона рамка (спробуйте додати можливість відображення
+      кількості кліків біля назви таблиці з використанням відповідно доданого
+      для цього атрибута).
+    </h2>
+    <div id="container"></div>
+    <script>
+      function paintTable(e) {
+        let table = this;
+        
+        if (e.target.tagName === "TD") {
+          table.style.border = "1px solid red";
+          let clicks = parseInt(table.getAttribute("countofclicks"));
+          clicks++;
+          table.setAttribute("countofclicks", clicks);
+          table.firstElementChild.innerText = `Количество кликов по таблице: ${clicks}`;
+        }
+      }
+
+      function getRandomNum(min, max) {
+        return min + Math.floor(Math.random() * (max - min + 1));
+      }
+
+      for (let i = 0; i < 3; i++) {
+        const table = document.createElement("table");
+        const th = document.createElement("th");
+        table.append(th);
+
+        for (let i = 0; i < 3; i++) {
+          const tr = document.createElement("tr");
+          for (let i = 0; i < 3; i++) {
+            const td = document.createElement("td");
+            td.innerText = `${getRandomNum(1, 100)}`;
+            tr.append(td);
+          }
+          table.append(tr);
+        }
+
+        table.setAttribute("countofclicks", 0);
+        table.addEventListener("click", paintTable);
+        container.append(table);
+      }
+    </script>
+  </body>
+</html>

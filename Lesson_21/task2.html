@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+  <body>
+    <h2>
+      <span>Задача 2</span>. Дано 5 елементів input. При введенні значення у
+      якийсь із них необхідно автоматично заповнювати інші (усі попередні у
+      спадному порядку(кожен попередній має значення на 1 менше за наступний),
+      усі наступні на 1 більше (кожен наступне на 1 більше за попереднього)
+    </h2>
+    <div class="container">
+      <label class="label">
+        Value 1
+        <input type="text" class="input" value="" />
+      </label>
+      <label class="label">
+        Value 2
+        <input type="text" class="input" value="" />
+      </label>
+      <label class="label">
+        Value 3
+        <input type="text" class="input" value="" />
+      </label>
+      <label class="label">
+        Value 4
+        <input type="text" class="input" value="" />
+      </label>
+      <label class="label">
+        Value 5
+        <input type="text" class="input" value="" />
+      </label>
+    </div>
+
+    <script>
+      function whenInput() {
+        let input = this;
+        let counter = input.value;
+        let label = input.parentElement;
+        while (label.nextElementSibling) {
+          label = label.nextElementSibling;
+          const nextInput = label.firstElementChild;
+          counter++;
+          nextInput.value = counter;
+        }
+        while (label.previousElementSibling) {
+          label = label.previousElementSibling;
+          const previousInput = label.firstElementChild;
+          counter--;
+          previousInput.value = counter;
+        }
+      }
+      const container = document.querySelector(".container");
+      for (const label of container.children) {
+        for (const input of label.children) {
+          input.oninput = whenInput;
+        }
+      }
+    </script>
+  </body>
+</html>

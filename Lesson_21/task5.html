@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <style>
+      label {
+        display: flex;
+      }
+    </style>
+    <h2>
+      <span>Задача 5</span>. На формі вводять 7 числових значень (вік, зріст,
+      вага, заробітна плата, стаж, номер відділу, порядковий номер). Додати
+      подію обробки події click на форму і якщо клік на input, то автоматично
+      замінювати значення його на 0.
+    </h2>
+    <div class="counter"></div>
+    <div id="form">
+      <label>
+        Возраст
+        <input type="number" value="" />
+      </label>
+      <label>
+        Рост
+        <input type="number" value="" />
+      </label>
+      <label>
+        Вес
+        <input type="number" value="" />
+      </label>
+      <label>
+        Заработная плата
+        <input type="number" value="" />
+      </label>
+      <label>
+        Стаж
+        <input type="number" value="" />
+      </label>
+      <label>
+        Номер оддела
+        <input type="number" value="" />
+      </label>
+      <label>
+        Порядковый номер
+        <input type="number" value="" />
+      </label>
+    </div>
+
+    <script>
+      function changeValue(e) {
+        if (e.target.tagName === "INPUT") {
+          e.target.value = 0;
+        }
+      }
+      const form = document.getElementById("form");
+      form.addEventListener("click", changeValue);
+    </script>
+  </body>
+</html>
