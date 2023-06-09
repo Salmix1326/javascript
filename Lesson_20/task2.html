@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+
+  <body>
+    <style>
+      #container {
+        display: flex;
+        flex-direction: column;
+      }
+      #year {
+        margin-bottom: 20px;
+      }
+    </style>
+    <h2>
+      <span>Задача 2</span>. Дано список автомобілів (марка, рік випуску, ціна).
+      Сформувати елементи для фільтрування з використанням випадаючого списку
+      (контент цих випадаючих списків сформувати у залежності від переданого
+      списку).
+    </h2>
+    <h2>Марка машины</h2>
+    <select name="logos" id="logo">
+      <option value="0">Выберите марку</option>
+    </select>
+    <h2>Год выпуска</h2>
+    <select name="years" id="year">
+      <option value="0">Выберите год выпуска</option>
+    </select>
+    <div id="container"></div>
+    <script>
+      // Создание класса Auto ===================================================================
+      class Auto {
+        constructor(logo, year, price) {
+          this.logo = logo;
+          this.year = year;
+          this.price = price;
+        }
+
+        toString() {
+          return `${this.logo} - ${this.year}р - ${this.price}$`;
+        }
+      }
+
+      // Список машин ===================================================================
+      let autoList = [
+        new Auto("Audi", 2000, 20000),
+        new Auto("Opel", 2015, 40000),
+        new Auto("Opel", 2000, 10000),
+        new Auto("Mersedes", 1996, 10000),
+        new Auto("Toyota", 2011, 60000),
+        new Auto("Renoult", 2006, 15000),
+      ];
+
+      // Сортировка по дате выпуска ===================================================================
+      autoList.sort((a, b) => a.year - b.year);
+
+      // Заполнение селектов данными ===================================================================
+      let logoSet = new Set();
+      let yearSet = new Set();
+      autoList.forEach((element, index) => {
+        const optionLogo = document.createElement("option");
+        const optionYear = document.createElement("option");
+        if (!logoSet.has(element.logo)) {
+          optionLogo.innerText = element.logo;
+          optionLogo.value = element.logo;
+          logo.append(optionLogo);
+          logoSet.add(element.logo);
+        }
+        if (!yearSet.has(element.year)) {
+          optionYear.innerText = element.year;
+          optionYear.value = element.year;
+          optionYear.className = "year";
+          year.append(optionYear);
+          yearSet.add(element.year);
+        }
+
+        const div = document.createElement("div"); // Вывод изначального списка ===================================================================
+        div.innerHTML = element;
+        container.append(div);
+      });
+
+      // Фильтр после выбора пользователя ===================================================================
+      const currentAutoList = document.getElementById("container");
+      const logoSelect = document.getElementById("logo");
+      const yearSelect = document.getElementById("year");
+
+      // Для марок машин ======================
+      logoSelect.addEventListener("change", function (e) {
+        currentAutoList.innerHTML = "";
+        let newList;
+
+        // Все вариации что может выбрать пользователь в селектах
+        if (logoSelect.value != 0 && yearSelect.value != 0) {
+          newList = autoList.filter(
+            (elem) =>
+              elem.logo == logoSelect.value && elem.year == yearSelect.value
+          );
+          newList.forEach((element) => {
+            const div = document.createElement("div");
+            div.innerHTML = element;
+            container.append(div);
+          });
+
+          if (newList.length == 0)
+            currentAutoList.innerHTML = "В базе данных нет подходящих машин";
+        }
+        // Не пойму почему не работет с else if
+        // Так же можно ли эти 2 newList.forEach как-то лучше опимизировать ? Так как код повторяется
+
+        if (logoSelect.value != 0 && yearSelect.value == 0) {
+          newList = autoList.filter((elem) => elem.logo == logoSelect.value);
+          newList.forEach((element) => {
+            const div = document.createElement("div");
+            div.innerHTML = element;
+            container.append(div);
+          });
+          if (newList.length == 0)
+            currentAutoList.innerHTML = "В базе данных нет подходящих машин";
+        }
+
+        if (logoSelect.value == 0 && yearSelect.value != 0) {
+          newList = autoList.filter((elem) => elem.year == yearSelect.value);
+          newList.forEach((element) => {
+            const div = document.createElement("div");
+            div.innerHTML = element;
+            container.append(div);
+          });
+        }
+
+        if (logoSelect.value == 0 && yearSelect.value == 0) {
+          autoList.forEach((element) => {
+            const div = document.createElement("div");
+            div.innerHTML = element;
+            container.append(div);
+          });
+        }
+      });
+
+      // Для года выпуска ======================
+      yearSelect.addEventListener("change", function (e) {
+        currentAutoList.innerHTML = "";
+
+        if (logoSelect.value != 0 && yearSelect.value != 0) {
+          newList = autoList.filter(
+            (elem) =>
+              elem.logo == logoSelect.value && elem.year == yearSelect.value
+          );
+          newList.forEach((element) => {
+            const div = document.createElement("div");
+            div.innerHTML = element;
+            container.append(div);
+          });
+          if (newList.length == 0)
+            currentAutoList.innerHTML = "В базе данных нет подходящих машин";
+        }
+
+        if (yearSelect.value != 0 && logoSelect.value == 0) {
+          newList = autoList.filter((elem) => elem.year == yearSelect.value);
+          newList.forEach((element) => {
+            const div = document.createElement("div");
+            div.innerHTML = element;
+            container.append(div);
+          });
+          if (newList.length == 0)
+            currentAutoList.innerHTML = "В базе данных нет подходящих машин";
+        }
+
+        if (logoSelect.value != 0 && yearSelect.value == 0) {
+          newList = autoList.filter((elem) => elem.logo == logoSelect.value);
+          newList.forEach((element) => {
+            const div = document.createElement("div");
+            div.innerHTML = element;
+            container.append(div);
+          });
+        }
+
+        if (logoSelect.value == 0 && yearSelect.value == 0) {
+          autoList.forEach((element) => {
+            const div = document.createElement("div");
+            div.innerHTML = element;
+            container.append(div);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

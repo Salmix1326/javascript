@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #container,
+      #container2 {
+        margin-left: 20px;
+        margin-top: 20px;
+        display: inline-flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        border: 1px solid black;
+        min-width: 100px;
+        align-items: center;
+      }
+      .cardEN,
+      .cardRU {
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 100%;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 5px;
+      }
+      .active {
+        background-color: rgb(26, 86, 196);
+      }
+    </style>
+    <h2 class="main-block_upper-title">
+      <span>Задача 1</span> Перекладач. Користувачу виводять змішані картки з
+      словами на англійській і українській мові. Користувач поступово клікає на
+      картки (виділяємо синьою рамкою). Якщо знайдено правильні пари карток, що
+      відповідають одному слову, то видаляємо ці картки. Інакше - виділяємо
+      червоною рамкою і через секунду забираємо рамку.
+    </h2>
+    <div id="container"></div>
+    <div id="container2"></div>
+    <script>
+      // Cлучайное число =============================================================
+      function getRandomValue(min, max) {
+        return min + Math.floor(Math.random() * (max - min + 1));
+      }
+      // Данные =============================================================
+      let words = [
+        { id: 0, en: "table", ru: "стол" },
+        { id: 1, en: "car", ru: "автомобиль" },
+        { id: 2, en: "bus", ru: "автобус" },
+        { id: 3, en: "man", ru: "человек" },
+        { id: 4, en: "boy", ru: "мальчик" },
+      ];
+
+      // Класс карточки =============================================================
+      class Card {
+        constructor(id, title, lang) {
+          this.id = id;
+          this.title = title;
+          this.lang = lang;
+        }
+
+        render(containerId) {
+          const card = document.createElement("div");
+          card.className = `${"card" + this.lang}`;
+          card.innerHTML = this.title;
+          card.setAttribute("cardid", this.id);
+          document.getElementById(containerId).append(card);
+        }
+      }
+
+      let setEN = new Set();
+      let setRU = new Set();
+
+      // Генерация карточек на случайных позициях =============================================================
+      while (setEN.size !== words.length || setRU.size !== words.length) {
+        let num = getRandomValue(0, words.length - 1);
+        let num2 = getRandomValue(0, words.length - 1);
+        if (!setEN.has(num)) {
+          new Card(words[num].id, words[num].en, "EN").render("container");
+          setEN.add(num);
+        }
+        if (!setRU.has(num2)) {
+          new Card(words[num2].id, words[num2].ru, "RU").render("container2");
+          setRU.add(num2);
+        }
+      }
+
+      // Принцип работы: клик по карточкам, добавление класса active для стилей и аттрибута cardtype - active для активной карты.
+      // Затем поиск двух карт из разных контейнеров с этим аттрибутом и сравнение по аттрибуту cardid
+
+      // Функция для выбора активной карточки =============================================================
+      let cnt1 = document.getElementById("container");
+      let cnt2 = document.getElementById("container2");
+      let enCards = document.querySelectorAll(".cardEN"); // коллекция карточек EN
+      let ruCards = document.querySelectorAll(".cardRU"); // коллекция карточек RU
+      let selectedCardEN = null; // текущая выбранная карточка из EN
+      let selectedCardRU = null; // текущая выбранная карточка из RU
+      let clickDisabled = true; // флаг для запрета клика пока идет проверка на соответствее карточек
+
+      // Проверка на выбор из EN
+      cnt1.addEventListener("click", function (event) {
+        if (clickDisabled && event.target.className == "cardEN") {
+          const clickedCard = event.target;
+
+          if (selectedCardEN) {
+            selectedCardEN.classList.remove("active");
+            selectedCardEN.removeAttribute("cardtype");
+          }
+
+          selectedCardEN = clickedCard;
+
+          clickedCard.classList.add("active");
+          clickedCard.setAttribute("cardtype", "active");
+
+          // Вызов функции, если уже активна карточка из RU
+          if (selectedCardRU) {
+            checkEquivalence(enCards, ruCards, cnt1, cnt2);
+            clickDisabled = false;
+          }
+        }
+      });
+
+      // Проверка на выбор из RU
+      cnt2.addEventListener("click", function (event) {
+        if (clickDisabled && event.target.className == "cardRU") {
+          const clickedCard = event.target;
+
+          if (selectedCardRU) {
+            selectedCardRU.classList.remove("active");
+            selectedCardRU.removeAttribute("cardtype");
+          }
+
+          selectedCardRU = clickedCard;
+
+          clickedCard.classList.add("active");
+          clickedCard.setAttribute("cardtype", "active");
+
+          // Вызов функции, если уже активна карточка из EN
+          if (selectedCardEN) {
+            checkEquivalence(enCards, ruCards, cnt1, cnt2);
+            clickDisabled = false;
+          }
+        }
+      });
+
+      // Функция определения сходства карточек =============================================================
+
+      function checkEquivalence(enCards, ruCards, cnt1, cnt2) {
+        let activeEngCard;
+        let activeRuCard;
+
+        enCards.forEach((element) => {
+          if (element.hasAttribute("cardtype")) activeEngCard = element;
+        });
+
+        ruCards.forEach((element) => {
+          if (element.hasAttribute("cardtype")) activeRuCard = element;
+        });
+
+        if (
+          activeEngCard.getAttribute("cardid") ===
+          activeRuCard.getAttribute("cardid")
+        ) {
+          activeEngCard.style.backgroundColor = "green";
+          activeRuCard.style.backgroundColor = "green";
+
+          setTimeout(() => {
+            activeEngCard.remove();
+            activeRuCard.remove();
+          }, 1000);
+        } else {
+          activeEngCard.style.backgroundColor = "red";
+          activeRuCard.style.backgroundColor = "red";
+        }
+
+        // Сброс переменных после удаления/неправильного выбора пользователя
+        setTimeout(() => {
+          activeEngCard.classList.remove("active");
+          activeRuCard.classList.remove("active");
+          activeEngCard.removeAttribute("cardtype");
+          activeRuCard.removeAttribute("cardtype");
+          activeEngCard.removeAttribute("style");
+          activeRuCard.removeAttribute("style");
+          selectedCardEN = null;
+          selectedCardRU = null;
+          clickDisabled = true;
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

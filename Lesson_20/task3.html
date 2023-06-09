@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №3</title>
+  </head>
+
+  <body>
+    <style>
+      #container {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        position: relative;
+      }
+    </style>
+    <h2>
+      <span>Задача 3</span>. Задача на вибiр з 21-го ДЗ. Ловля тараканів.
+      Зображення тараканів з’являються в центрі контейнера і випадковим чином
+      «розбігаються» у випадкових напрямках. При кліку на зображенні таракана
+      його рух припиняється і виводиться зображення сплячого таракана.
+    </h2>
+    <div id="container"></div>
+    <script>
+      // Случайное значение ===========================================================
+      function getRandomNum(min, max) {
+        return min + Math.floor(Math.random() * max - min + 1);
+      }
+
+      // Данные ===========================================================
+      let cockroachData = [
+        {
+          name: "roach1",
+          live: "img/roach.png",
+          dead: "img/deadroach.jpg",
+        },
+        {
+          name: "roach2",
+          live: "img/roach.png",
+          dead: "img/deadroach.jpg",
+        },
+        {
+          name: "roach3",
+          live: "img/roach.png",
+          dead: "img/deadroach.jpg",
+        },
+        {
+          name: "roach4",
+          live: "img/roach.png",
+          dead: "img/deadroach.jpg",
+        },
+        {
+          name: "roach5",
+          live: "img/roach.png",
+          dead: "img/deadroach.jpg",
+        },
+      ];
+
+      let cockroachMap = new Map();
+
+      // Создание обьектов на странице. Решил не через класс, так быстрее)) ===========================================================
+      cockroachData.forEach((roach) => {
+        const div = document.createElement("div");
+
+        div.className = "roach";
+        div.style.position = "absolute";
+        div.style.left = 250 + "px";
+        div.style.top = 250 + "px";
+        div.style.transform = "translate(-50%,-50%)";
+
+        const img = document.createElement("img");
+        img.src = roach.live;
+        img.width = 50;
+
+        div.append(img);
+        container.append(div);
+
+        let directionX = getRandomNum(10, 30); // Указание направления и интервала движения
+        let directionY = getRandomNum(10, 50);
+        let stopInt = setInterval(() => {
+          div.style.left = parseInt(div.style.left) + directionX + "px";
+          div.style.top = parseInt(div.style.top) + directionY + "px";
+          if (parseInt(div.style.left) < 50 || parseInt(div.style.left) > 450) {
+            directionX = -directionX;
+          }
+
+          if (parseInt(div.style.top) > 450 || parseInt(div.style.top) < 50) {
+            directionY = -directionY;
+          }
+        }, 200);
+
+        cockroachMap.set(img, stopInt);
+      });
+
+      const cnt = document.getElementById("container");
+
+      cnt.addEventListener("click", function (e) {
+        // Прекращение движения по клику
+        if (e.target.tagName == "IMG") {
+          const stopInt = cockroachMap.get(e.target);
+          if (stopInt) {
+            e.target.src = "img/deadroach.jpg";
+            clearInterval(stopInt); // Останавливаем интервал для соответствующего таракана
+            cockroachMap.delete(e.target); // Удаляем запись из мапы
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
